@@ -1,9 +1,9 @@
 import '../styles/App.css';
-import Signup from '../layouts/Signup';
+import Signin from '../layouts/Signin';
 
 const App = () => (
   <div className="App">
-    <Signup />
+    <Signin />
   </div>
 );
 
