@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import validator from 'email-validator';
 // import { useHistory } from 'react-router-dom';
 import { authInit, authSuccess, authSignupFailure } from '../actions/index';
+import authCall from '../utils/apiCalls';
 
 const Signup = ({
   signupinit, signupsuccess, signupfailure, isLoading, errors,
@@ -42,12 +43,12 @@ const Signup = ({
   };
 
   const handleSubmit = (event) => {
+    const fValid = document.getElementById('form-validation');
+    const shwError = document.createElement('div');
     const addValidChild = () => {
       shwError.classList.add('validationError');
       fValid.appendChild(shwError);
     };
-    const fValid = document.getElementById('form-validation');
-    const shwError = document.createElement('div');
     if (state.password !== state.password_confirmation) {
       shwError.innerHTML = 'Password don\'t match!!';
       addValidChild();
@@ -55,8 +56,17 @@ const Signup = ({
       shwError.innerHTML = 'Invalid email format';
       addValidChild();
     } else {
-
+      const user = {
+        firstname: state.firstname,
+        lastname: state.lastname,
+        email: state.email,
+        password: state.password,
+        password_confirmation: state.password_confirmation,
+        userType: state.userType,
+      };
+      authCall(user, signupinit, signupsuccess, signupfailure);
     }
+    event.preventDefault();
   };
   // const clearError = () => {
 
