@@ -8,4 +8,6 @@ const initialState = {
   },
 };
 
-export default initialState;
+const userTypes = ['Candidate', 'Recruiter'];
+
+export { initialState, userTypes };

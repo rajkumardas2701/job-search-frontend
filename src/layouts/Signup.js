@@ -6,6 +6,7 @@ import validator from 'email-validator';
 // import { useHistory } from 'react-router-dom';
 import { authInit, authSuccess, authSignupFailure } from '../actions/index';
 import authCall from '../utils/apiCalls';
+import { userTypes } from '../constants/initialState';
 
 const Signup = ({
   signupinit, signupsuccess, signupfailure, isLoading, errors,
@@ -17,7 +18,7 @@ const Signup = ({
     email: '',
     password: '',
     password_confirmation: '',
-    userType: ['Recruiter', 'Candidate'],
+    user_type: '',
   });
 
   const handleChange = ({ target: { name, value } }) => {
@@ -31,7 +32,7 @@ const Signup = ({
       email: '',
       password: '',
       password_confirmation: '',
-      userType: ['Recruiter', 'Candidate'],
+      user_type: ['Recruiter', 'Candidate'],
     });
     // history.push('/');
   };
@@ -62,7 +63,7 @@ const Signup = ({
         email: state.email,
         password: state.password,
         password_confirmation: state.password_confirmation,
-        userType: state.userType,
+        user_type: state.user_type,
       };
       authCall(user, signupinit, signupsuccess, signupfailure);
     }
@@ -127,7 +128,7 @@ const Signup = ({
           <p className="user-type-text">Signup As:</p>
           <select className="user-type-dropdown" name="user_type" onChange={handleChange}>
             {
-              state.userType.map((ut) => <option className="user-type-option" key={ut} value={ut}>{ut}</option>)
+              userTypes.map((ut) => <option className="user-type-option" key={ut} value={ut}>{ut}</option>)
             }
           </select>
         </div>
