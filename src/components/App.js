@@ -1,6 +1,6 @@
 import '../styles/App.css';
-// import Signin from '../layouts/Signin';
-import Signup from '../layouts/Signup';
+// import Signin from './Signin';
+import Signup from './Signup';
 import Footer from '../layouts/Footer';
 import NavBar from '../layouts/Navbar';
 
