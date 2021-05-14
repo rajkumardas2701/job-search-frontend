@@ -11,7 +11,7 @@ const authCall = (user, initialize, success, failure) => {
         failure(response.data.errors);
       }
     })
-    .catch((error) => failure(error.response.data.message));
+    .catch((error) => failure(error.message));
 };
 
 export default authCall;

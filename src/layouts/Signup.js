@@ -50,11 +50,11 @@ const Signup = ({
       shwError.classList.add('validationError');
       fValid.appendChild(shwError);
     };
-    if (state.password !== state.password_confirmation) {
-      shwError.innerHTML = 'Password don\'t match!!';
-      addValidChild();
-    } else if (!validator.validate(state.email)) {
+    if (!validator.validate(state.email)) {
       shwError.innerHTML = 'Invalid email format';
+      addValidChild();
+    } else if (state.password !== state.password_confirmation) {
+      shwError.innerHTML = 'Password don\'t match!!';
       addValidChild();
     } else {
       const user = {
@@ -143,7 +143,7 @@ const Signup = ({
       </form>
       {isLoading && <div>Loading!!!</div>}
       <div className="form-validation" id="form-validation" />
-      <div className="server-error-section">{errors ? handleErrors(errors) : null}</div>
+      <div className="server-error-section">{errors.length ? handleErrors(errors) : null}</div>
     </div>
   );
 };
