@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import '../styles/Signup.css';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import validator from 'email-validator';
 // import { useHistory } from 'react-router-dom';
-// import { authInit, authSuccess, authSignupFailure } from '../actions/index';
-// import userTypes from '../contacts/initialState';
+import { authInit, authSuccess, authSignupFailure } from '../actions/index';
 
-const Signup = () => {
+const Signup = ({
+  signupinit, signupsuccess, signupfailure, isLoading, errors,
+}) => {
   // const history = useHistory();
   const [state, setState] = useState({
     firstname: '',
@@ -31,10 +35,37 @@ const Signup = () => {
     // history.push('/');
   };
 
+  const handleErrors = (errors) => {
+    <ul>
+      {errors.map((error) => <li key={error} className="error">{error}</li>)}
+    </ul>;
+  };
+
+  const handleSubmit = (event) => {
+    const addValidChild = () => {
+      shwError.classList.add('validationError');
+      fValid.appendChild(shwError);
+    };
+    const fValid = document.getElementById('form-validation');
+    const shwError = document.createElement('div');
+    if (state.password !== state.password_confirmation) {
+      shwError.innerHTML = 'Password don\'t match!!';
+      addValidChild();
+    } else if (!validator.validate(state.email)) {
+      shwError.innerHTML = 'Invalid email format';
+      addValidChild();
+    } else {
+
+    }
+  };
+  // const clearError = () => {
+
+  // }
+
   return (
     <div className="signup-container">
       <h2>Register to JobHub</h2>
-      <form className="signup-form-container">
+      <form onSubmit={handleSubmit} className="signup-form-container">
         <div className="input-section">
           <input
             className="form-inputs"
@@ -91,7 +122,7 @@ const Signup = () => {
           </select>
         </div>
         <div className="sign-up-button-section">
-          <button type="button" className="signup-buttons">
+          <button type="submit" className="signup-buttons">
             Sign Up
           </button>
           <button type="button" className="signup-buttons" onClick={resetState}>
@@ -99,11 +130,35 @@ const Signup = () => {
           </button>
         </div>
       </form>
+      {isLoading && <div>Loading!!!</div>}
+      <div className="form-validation" id="form-validation" />
+      <div className="server-error-section">{errors ? handleErrors(errors) : null}</div>
     </div>
   );
 };
-// {
-//   signupinit, signupsuccess, signupfailure, isLoading, errors,
-// }
 
-export default Signup;
+Signup.propTypes = {
+  signupinit: PropTypes.func.isRequired,
+  signupsuccess: PropTypes.func.isRequired,
+  signupfailure: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool,
+  errors: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+};
+
+Signup.defaultProps = {
+  isLoading: false,
+  errors: [],
+};
+
+const mapStateToProps = (state) => ({
+  isLoading: state.auth.isLoading,
+  errors: state.auth.errors.signupErrors,
+});
+
+const mapDispathToProps = (dispatch) => ({
+  signupinit: () => dispatch(authInit()),
+  signupsuccess: () => dispatch(authSuccess()),
+  signupfailure: (error) => dispatch(authSignupFailure(error)),
+});
+
+export default connect(mapStateToProps, mapDispathToProps)(Signup);
