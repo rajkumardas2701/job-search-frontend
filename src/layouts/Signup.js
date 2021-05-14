@@ -11,12 +11,24 @@ const Signup = () => {
     lastname: '',
     email: '',
     password: '',
-    passwordConfirmation: '',
+    password_confirmation: '',
     userType: ['Recruiter', 'Candidate'],
   });
 
   const handleChange = ({ target: { name, value } }) => {
     setState({ ...state, [name]: value });
+  };
+
+  const resetState = () => {
+    setState({
+      firstname: '',
+      lastname: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+      userType: ['Recruiter', 'Candidate'],
+    });
+    // history.push('/');
   };
 
   return (
@@ -65,7 +77,7 @@ const Signup = () => {
             placeholder="Confirm password"
             type="password"
             name="password_confirmation"
-            value={state.passwordConfirmation}
+            value={state.password_confirmation}
             onChange={handleChange}
             required
           />
@@ -82,7 +94,7 @@ const Signup = () => {
           <button type="button" className="signup-buttons">
             Sign Up
           </button>
-          <button type="button" className="signup-buttons">
+          <button type="button" className="signup-buttons" onClick={resetState}>
             Cancel
           </button>
         </div>
