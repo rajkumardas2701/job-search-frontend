@@ -13,8 +13,10 @@ export const authSuccess = () => ({
 
 export const authSignupFailure = (error) => ({
   type: AUTH_SIGNUP_FAIL,
+  payload: error,
 });
 
 export const authSigninFailure = (error) => ({
-  type: AUTH_SIGNIN_FAIL
+  type: AUTH_SIGNIN_FAIL,
+  payload: error,
 });
