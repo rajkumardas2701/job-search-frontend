@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import validator from 'email-validator';
 // import { useHistory } from 'react-router-dom';
+import { CircleToBlockLoading } from 'react-loadingg';
 import { authInit, authSuccess, authSignupFailure } from '../actions/index';
 import authCall from '../utils/apiCalls';
 import { userTypes } from '../constants/initialState';
@@ -141,7 +142,7 @@ const Signup = ({
           </button>
         </div>
       </form>
-      {isLoading && <div>Loading!!!</div>}
+      {isLoading && <div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>}
       <div className="form-validation" id="form-validation" />
       <div className="server-error-section">{errors.length ? handleErrors(errors) : null}</div>
     </div>
