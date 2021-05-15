@@ -1,10 +1,17 @@
 import axios from 'axios';
 
-const authCall = (user, initialize, success, failure) => {
+const authCall = (authType, user, initialize, success, failure) => {
+  let query;
+  if (authType === 'signup') {
+    query = 'signup';
+  } else {
+    query = 'login';
+  }
+
   initialize();
-  axios.post('http://localhost:3001/api/v1/signup', { user }, { withCredentials: true })
+  axios.post(`http://localhost:3001/api/v1/${query}`, { user }, { withCredentials: true })
     .then((response) => {
-      if (response.data.status === 'created') {
+      if ((response.data.status === 'created') || (response.data.logged_in)) {
         success();
       // history.push('/');
       } else {

@@ -35,7 +35,7 @@ const Signup = ({
       email: '',
       password: '',
       password_confirmation: '',
-      user_type: ['Recruiter', 'Candidate'],
+      user_type: userTypes,
     });
     history.push('/');
   };
@@ -79,7 +79,7 @@ const Signup = ({
         password_confirmation: state.password_confirmation,
         user_type: state.user_type,
       };
-      authCall(user, signupinit, signupsuccess, signupfailure);
+      authCall('signup', user, signupinit, signupsuccess, signupfailure);
     }
     event.preventDefault();
   };
@@ -88,7 +88,7 @@ const Signup = ({
     <>
       <NavBar />
       <div className="signup-container">
-        <h2>Register to JobHub</h2>
+        <h2 className="form-head">Register to JobHub</h2>
         <form onSubmit={handleSubmit} className="signup-form-container">
           <div className="input-section">
             <input

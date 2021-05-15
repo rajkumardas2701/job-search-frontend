@@ -1,5 +1,5 @@
 import {
-  AUTH_INIT, AUTH_SUCCESS, AUTH_SIGNUP_FAIL,
+  AUTH_INIT, AUTH_SUCCESS, AUTH_SIGNUP_FAIL, AUTH_SIGNIN_FAIL,
 } from '../actions/index';
 
 const authReducer = (state = {}, action) => {
@@ -17,6 +17,15 @@ const authReducer = (state = {}, action) => {
         errors: {
           signupErrors: [...state.errors.signupErrors, action.payload],
           signinErrors: [],
+        },
+      };
+    case AUTH_SIGNIN_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        errors: {
+          signinErrors: [...state.errors.signinErrors, action.payload],
+          signupErrors: [],
         },
       };
     default:
