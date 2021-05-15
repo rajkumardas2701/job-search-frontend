@@ -6,7 +6,7 @@ import Signup from './components/Signup';
 import Signin from './components/Signin';
 import NotFound from './layouts/NotFound';
 
-const Routes = () => {
+const Routes = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" component={Home} />
@@ -14,7 +14,7 @@ const Routes = () => {
       <Route exact path="/signin" component={Signin} />
       <Route component={NotFound} />
     </Switch>
-  </BrowserRouter>;
-};
+  </BrowserRouter>
+);
 
 export default Routes;
