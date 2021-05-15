@@ -11,9 +11,9 @@ const Home = () => (
       <h3>at</h3>
       <h1>JobHub</h1>
       <div className="homeButtonSection">
-        <button type="button"><a href="/signin">Sign In</a></button>
+        <a href="/signin">Sign In</a>
         <p>Or</p>
-        <button type="button"><a href="/signup">Sign Up</a></button>
+        <a href="/signup">Sign Up</a>
       </div>
     </div>
     <Footer />
