@@ -40,10 +40,16 @@ const Signup = ({
     history.push('/');
   };
 
+  const clearError = (errs) => {
+    errs.shift();
+    signupfailure(errs);
+  };
+
   const handleErrors = (errors) => {
     <ul>
       {errors.map((error) => <li key={error} className="error">{error}</li>)}
     </ul>;
+    setTimeout((errors) => clearError(errors), 5000);
   };
 
   const handleSubmit = (event) => {
@@ -52,6 +58,11 @@ const Signup = ({
     const addValidChild = () => {
       shwError.classList.add('validationError');
       fValid.appendChild(shwError);
+      setTimeout(() => {
+        if (fValid.hasChildNodes()) {
+          fValid.removeChild(fValid.childNodes[0]);
+        }
+      }, 5000);
     };
     if (!validator.validate(state.email)) {
       shwError.innerHTML = 'Invalid email format';
@@ -72,9 +83,6 @@ const Signup = ({
     }
     event.preventDefault();
   };
-  // const clearError = () => {
-
-  // }
 
   return (
     <>
