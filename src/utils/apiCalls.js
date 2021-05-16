@@ -12,7 +12,7 @@ const authCall = (authType, user, initialize, success, failure, history) => {
     .then((response) => {
       if ((response.data.status === 'created') || (response.data.logged_in)) {
         success();
-        history.push('/signin');
+        history.push('/jobs');
       } else {
         failure(response.data.errors);
       }
