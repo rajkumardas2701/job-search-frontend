@@ -6,6 +6,11 @@ const initialState = {
       signinErrors: [],
     },
   },
+  jobsData: {
+    isLoading: false,
+    errors: [],
+    jobs: [],
+  },
 };
 
 const userTypes = ['Candidate', 'Recruiter'];
