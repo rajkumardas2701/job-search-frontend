@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { CircleToBlockLoading } from 'react-loadingg';
-import authCall from '../utils/apiCalls';
+import { authCall } from '../utils/apiCalls';
 import { authInit, authSuccess, authSigninFailure } from '../actions/index';
 
 const Signin = ({

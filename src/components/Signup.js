@@ -6,7 +6,7 @@ import validator from 'email-validator';
 import { useHistory } from 'react-router-dom';
 import { CircleToBlockLoading } from 'react-loadingg';
 import { authInit, authSuccess, authSignupFailure } from '../actions/index';
-import authCall from '../utils/apiCalls';
+import { authCall } from '../utils/apiCalls';
 import { userTypes } from '../constants/initialState';
 import NavBar from '../layouts/Navbar';
 import Footer from '../layouts/Footer';

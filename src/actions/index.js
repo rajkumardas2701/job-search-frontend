@@ -29,11 +29,11 @@ export const fetchJobsInit = () => ({
   type: FETCH_JOBS_INIT,
 });
 
-export const fetchJobsSuccess = () => ({
+export const fetchJobsSuccess = (data) => ({
   type: FETCH_JOBS_SUCCESS,
+  payload: data,
 });
 
-export const fetchJobsFailure = (errors) => ({
+export const fetchJobsFailure = () => ({
   type: FETCH_JOBS_FAIL,
-  payload: errors,
 });

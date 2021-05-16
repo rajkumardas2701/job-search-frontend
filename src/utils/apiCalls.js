@@ -22,4 +22,14 @@ const authCall = (authType, user, initialize, success, failure, history) => {
     });
 };
 
-export default authCall;
+const jobsCall = async (initialize, success, failure) => {
+  initialize();
+  try {
+    const result = await axios.get('http://localhost:3001/api/v1/jobs');
+    success(result.data.jobs);
+  } catch (error) {
+    failure(error);
+  }
+};
+
+export { authCall, jobsCall };

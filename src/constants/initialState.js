@@ -8,7 +8,7 @@ const initialState = {
   },
   jobsData: {
     isLoading: false,
-    errors: [],
+    isError: false,
     jobs: [],
   },
 };

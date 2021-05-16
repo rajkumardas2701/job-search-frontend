@@ -12,7 +12,7 @@ const jobsReducer = (state = {}, action) => {
       };
     case FETCH_JOBS_FAIL:
       return {
-        ...state, isLoading: false, errors: action.payload,
+        ...state, isLoading: false, isError: true,
       };
     default:
       return state;
