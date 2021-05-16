@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 
 const Job = ({ job }) => (
   <>
-    <li>
-      {
-        job.location
-      }
-    </li>
+    <ul>
+      <li>{job.location}</li>
+      <li>{job.salary}</li>
+      <li>{job.role}</li>
+      <li>{job.skills}</li>
+    </ul>
   </>
 );
 

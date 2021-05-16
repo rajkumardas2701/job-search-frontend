@@ -5,6 +5,8 @@ import { CircleToBlockLoading } from 'react-loadingg';
 import Job from '../components/Job';
 import { fetchJobsInit, fetchJobsSuccess, fetchJobsFailure } from '../actions/index';
 import { jobsCall } from '../utils/apiCalls';
+import NavBar from '../layouts/Navbar';
+import Footer from '../layouts/Footer';
 
 const Jobs = ({
   fetchInit, fetchSuccess, fetchFail, isLoading, isError, jobs,
@@ -14,18 +16,18 @@ const Jobs = ({
   }, []);
   return (
     <div>
+      <NavBar />
       {isError && <div>Couldn&apos;t fetch the data now, please try again later</div>}
       {isLoading ? (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
         : (
           <div>
-            {console.log(`inside return ${jobs}`)}
-            {console.log(`Jobs  length ${jobs.length}`)}
             {
           (jobs && jobs.length) ? (jobs.map((job) => <Job job={job} key={job.id} />))
             : 'fetching Data'
           }
           </div>
         )}
+      <Footer />
     </div>
   );
 };
