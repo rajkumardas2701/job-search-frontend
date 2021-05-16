@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './layouts/Home';
 import Signup from './components/Signup';
 import Signin from './components/Signin';
-import Job from './containers/Job';
+import Jobs from './containers/Jobs';
 import NotFound from './layouts/NotFound';
 
 const Routes = () => (
@@ -13,7 +13,7 @@ const Routes = () => (
       <Route exact path="/" component={Home} />
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/signin" component={Signin} />
-      <Route exact path="/jobs" component={Job} />
+      <Route exact path="/jobs" component={Jobs} />
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>
