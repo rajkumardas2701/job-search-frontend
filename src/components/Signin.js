@@ -3,6 +3,7 @@ import '../styles/Signup.css';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { CircleToBlockLoading } from 'react-loadingg';
 import authCall from '../utils/apiCalls';
 import { authInit, authSuccess, authSigninFailure } from '../actions/index';
 
@@ -29,13 +30,25 @@ const Signin = ({
     history.push('/');
   };
 
+  // const clearError = (errs) => {
+  //   errs.shift();
+  //   signinfailure(errs);
+  // };
+
+  const handleErrors = (errors) => {
+    <ul>
+      {errors.map((error) => <li key={error} className="error">{error}</li>)}
+    </ul>;
+    // setTimeout((errors) => clearError(errors), 5000);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const user = {
       email,
       password,
     };
-    authCall('signin', user, signinInit, signinSuccess, signinFailure);
+    authCall('signin', user, signinInit, signinSuccess, signinFailure, history);
   };
 
   return (
@@ -80,6 +93,8 @@ const Signin = ({
           </button>
         </div>
       </form>
+      {isLoading && <div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>}
+      <div className="server-error-section">{errors.length ? handleErrors(errors) : null}</div>
     </div>
   );
 };

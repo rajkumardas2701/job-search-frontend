@@ -40,16 +40,16 @@ const Signup = ({
     history.push('/');
   };
 
-  const clearError = (errs) => {
-    errs.shift();
-    signupfailure(errs);
-  };
+  // const clearError = (errs) => {
+  //   errs.shift();
+  //   signupfailure(errs);
+  // };
 
   const handleErrors = (errors) => {
     <ul>
       {errors.map((error) => <li key={error} className="error">{error}</li>)}
     </ul>;
-    setTimeout((errors) => clearError(errors), 5000);
+    // setTimeout((errors) => clearError(errors), 5000);
   };
 
   const handleSubmit = (event) => {
@@ -79,7 +79,7 @@ const Signup = ({
         password_confirmation: state.password_confirmation,
         user_type: state.user_type,
       };
-      authCall('signup', user, signupinit, signupsuccess, signupfailure);
+      authCall('signup', user, signupinit, signupsuccess, signupfailure, history);
     }
     event.preventDefault();
   };
