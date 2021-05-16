@@ -1,6 +1,12 @@
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import Job from '../components/Job';
+import { fetchJobsInit, fetchJobsSuccess, fetchJobsFailure } from '../actions/index';
+import { connect } from 'react-redux';
 
-const Jobs = () => {
+const Jobs = ({
+  fetchInit, fetchSuccess, fetchFail,
+}) => {
   const jobs = axios.get('http://localhost:3001/api/v1/jobs')
     .then((response) => {
       if (!response.data.status === 200) {
@@ -13,10 +19,24 @@ const Jobs = () => {
   return (
     <ul>
       {
-        (jobs.length) ? (jobs.map((job) => <li key={job.id}>{job.location}</li>)) : ''
+        (jobs.length) ? (jobs.map((job) => <Job job={job} key={job.id} />)) : ''
       }
     </ul>
   );
 };
 
-export default Jobs;
+Jobs.propTypes = {
+  fetchInit: PropTypes.func.isRequired,
+  fetchSuccess: PropTypes.func.isRequired,
+  fetchFail: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = () => {
+
+};
+
+const mapDispatchToProps = () => {
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Jobs);
