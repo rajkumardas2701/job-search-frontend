@@ -79,6 +79,7 @@ const Signup = ({
         password_confirmation: state.password_confirmation,
         user_type: state.user_type,
       };
+      if (user.user_type === '') { user.user_type = 'Candidate'; }
       authCall('signup', user, signupinit, signupsuccess, signupfailure, history);
     }
     event.preventDefault();
