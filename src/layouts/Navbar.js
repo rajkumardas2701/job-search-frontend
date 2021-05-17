@@ -1,53 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import PropTypes from 'prop-types';
 import '../styles/NavBar.css';
 
-const NavBar = (loggedIn) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(loggedIn);
+const NavBar = (props1, props2, handleLogout) => {
+  const [state, setState] = useState(props1, props2);
+
   useEffect(() => {
-    setIsLoggedIn(loggedIn);
-  }, [loggedIn]);
+    setState(props1, props2);
+  }, [props1, props2]);
+
   return (
-    <div className="navbar">
-      <div>
-        <Link to="/" className="logoAnc">
-          <h1 className="logoHead" data-testid="navbar-heading">JobHub</h1>
-        </Link>
-      </div>
-      {/* {console.log(isLoggedIn)} */}
+    <>
       {
-      !(Object.keys(isLoggedIn) === 0)
-        ? (
-          <div>
-            {(isLoggedIn) ? (
+        ('loggedIn' in state)
+
+          ? (
+
+            <div className="navbar">
               <div>
-                <Link to="/logout">Logout</Link>
+                <Link to="/" className="logoAnc">
+                  <h1 className="logoHead" data-testid="navbar-heading">JobHub</h1>
+                </Link>
+              </div>
+              <div>
+                {
+          state.name ? `Hello, ${state.name}` : ''
+        }
+              </div>
+              {
+          (state.loggedIn)
+            ? (
+              <button type="button" onClick={handleLogout} className="login-logout-btn">Logout</button>
+            ) : (
+              <div>
+                <Link to="/signin">Signin</Link>
+                <Link to="/signup">Signup</Link>
               </div>
             )
-              : (
-                <div>
-                  <Link to="/signin">Signin</Link>
-                  <Link to="/signup">Signup</Link>
-                </div>
-              )}
-          </div>
-        )
-        : (
-          <div>
-            {/* {console.log('error')} */}
-          </div>
-        )
+          }
+            </div>
+          )
+          : (
+            <div />
+          )
       }
-      {
-
-      }
-    </div>
+    </>
   );
 };
 
-/* <p>
-Hello
-{isLoggedIn.loggedIn.user.firstname}
-</p> */
 export default NavBar;

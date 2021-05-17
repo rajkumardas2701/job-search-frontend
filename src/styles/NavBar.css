@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   height: 50px;
-  align-items: center;
+  /* align-items: center; */
   justify-content: space-between;
   position: fixed;
   left: 0;
@@ -10,8 +10,6 @@
   width: 100%;
   justify-items: center;
   z-index: 90;
-
-  /* background-color: white; */
 }
 
 .logoHead {
@@ -26,5 +24,10 @@
   margin: 10px 10px;
   width: 10%;
   text-decoration: none;
+  height: 50px;
+}
+
+.login-logout-btn {
+  width: 150px;
   height: 50px;
 }

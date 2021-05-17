@@ -14,7 +14,7 @@ const authCall = (authType, user, initialize, success, failure, history) => {
     .then((response) => {
       if ((response.data.status === 'created') || (response.data.logged_in)) {
         success();
-        history.push('/jobs');
+        history.push('/');
       } else if (response.data.logged_out) {
         history.push('/');
       } else {

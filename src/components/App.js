@@ -39,9 +39,21 @@ const App = () => {
   useEffect(() => {
     isLoggedIn();
   }, []);
+
+  const handleLogout = () => {
+    setLoggedIn({
+      logged_in: false,
+      user: {},
+    });
+  };
+
   return (
     <div className="App">
-      <NavBar loggedIn={loggedIn} />
+      <NavBar
+        loggedIn={loggedIn.logged_in}
+        name={loggedIn.user.firstname}
+        handleLogout={handleLogout}
+      />
       <Jobs />
       <Footer />
     </div>
