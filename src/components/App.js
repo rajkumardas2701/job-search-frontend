@@ -40,22 +40,33 @@ const App = () => {
     isLoggedIn();
   }, []);
 
-  const handleLogout = () => {
-    setLoggedIn({
-      logged_in: false,
-      user: {},
-    });
-  };
+  // const handleLogout = (event) => {
+  //   event.preventDefault();
+  //   console.log('inside handle logout');
+  //   axios.delete('http://localhost:3001/api/v1/logout', { withCredentials: true })
+  //     .then((response) => {
+  //       console.log(response);
+  //       setLoggedIn({
+  //         logged_in: false,
+  //         user: {},
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  //   history.push('/signin');
+  // };
 
   return (
     <div className="App">
       <NavBar
         loggedIn={loggedIn.logged_in}
-        name={loggedIn.user.firstname}
-        handleLogout={handleLogout}
+        user={loggedIn.user}
+        handleLogout={setLoggedIn}
       />
       <Jobs />
       <Footer />
+      {console.log(loggedIn.logged_in)}
     </div>
   );
 };

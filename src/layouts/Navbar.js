@@ -1,18 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import axios from 'axios';
 import '../styles/NavBar.css';
 
-const NavBar = (props1, props2, handleLogout) => {
-  const [state, setState] = useState(props1, props2);
-
+const NavBar = ({ loggedIn, user, handlelogout }) => {
+  console.log(loggedIn);
+  const history = useHistory();
+  const [state, setState] = useState(loggedIn);
   useEffect(() => {
-    setState(props1, props2);
-  }, [props1, props2]);
+    setState(loggedIn);
+  }, [loggedIn]);
+
+  const handleSignOut = (event) => {
+    event.preventDefault();
+    console.log('inside handle logout');
+    axios.post('http://localhost:3001/api/v1/logout', { withCredentials: true })
+      .then((response) => {
+        console.log(response);
+        handlelogout({
+          logged_in: false,
+          user: {},
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    history.push('/signin');
+  };
 
   return (
     <>
+      {console.log(loggedIn)}
       {
-        ('loggedIn' in state)
+        (state)
 
           ? (
 
@@ -24,13 +45,13 @@ const NavBar = (props1, props2, handleLogout) => {
               </div>
               <div>
                 {
-          state.name ? `Hello, ${state.name}` : ''
+          user.firstname ? `Hello, ${user.firstname}` : ''
         }
               </div>
               {
-          (state.loggedIn)
+          (loggedIn)
             ? (
-              <button type="button" onClick={handleLogout} className="login-logout-btn">Logout</button>
+              <button type="button" onClick={handleSignOut} className="login-logout-btn">Logout</button>
             ) : (
               <div>
                 <Link to="/signin">Signin</Link>
@@ -46,6 +67,17 @@ const NavBar = (props1, props2, handleLogout) => {
       }
     </>
   );
+};
+
+NavBar.propTypes = {
+  loggedIn: PropTypes.bool,
+  user: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  handlelogout: PropTypes.func.isRequired,
+};
+
+NavBar.defaultProps = {
+  loggedIn: false,
+  user: {},
 };
 
 export default NavBar;

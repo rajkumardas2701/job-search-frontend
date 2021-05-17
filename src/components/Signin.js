@@ -27,7 +27,7 @@ const Signin = ({
       email: '',
       password: '',
     });
-    history.push('/');
+    history.push('/signin');
   };
 
   // const clearError = (errs) => {
