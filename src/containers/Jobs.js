@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CircleToBlockLoading } from 'react-loadingg';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 import Job from '../components/Job';
 import { fetchJobsInit, fetchJobsSuccess, fetchJobsFailure } from '../actions/index';
 import { jobsCall } from '../utils/apiCalls';
@@ -11,8 +13,35 @@ import Footer from '../layouts/Footer';
 const Jobs = ({
   fetchInit, fetchSuccess, fetchFail, isLoading, isError, jobs,
 }) => {
-  useEffect(() => {
+  const history = useHistory();
+  const [loggedIn, setLoggedIn] = useState({
+    logged_in: false,
+    user: {},
+  });
+
+  const isLoggedIn = () => {
+    axios
+      .get('http://localhost:3001/api/v1/logged_in', { withCredentials: true })
+      .then((response) => {
+        if (response.data.logged_in && !loggedIn.logged_in) {
+          setLoggedIn({
+            logged_in: true,
+            user: response.data.user,
+          });
+        } else if (!response.data.logged_in && loggedIn.logged_in) {
+          setLoggedIn({
+            logged_in: false,
+            user: {},
+          });
+          history.push('/');
+        }
+      })
+      .catch((error) => error);
     jobsCall(fetchInit, fetchSuccess, fetchFail);
+  };
+
+  useEffect(() => {
+    isLoggedIn();
   }, []);
   return (
     <div>
