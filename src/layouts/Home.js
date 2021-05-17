@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import NavBar from './Navbar';
 import Footer from './Footer';
 import '../styles/Home.css';
@@ -11,9 +12,9 @@ const Home = () => (
       <h3>at</h3>
       <h1>JobHub</h1>
       <div className="homeButtonSection">
-        <a href="/signin">Sign In</a>
+        <Link to="/signin">Sign In</Link>
         <p>Or</p>
-        <a href="/signup">Sign Up</a>
+        <Link to="/signup">Sign Up</Link>
       </div>
     </div>
     <Footer />
