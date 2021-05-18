@@ -1,5 +1,3 @@
-// import Signin from './Signin';
-// import Signup from './Signup';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -15,11 +13,17 @@ const App = () => {
     logged_in: false,
     user: {},
   });
-
+  // const handleSignOut = () => {
+  //   setLoggedIn({
+  //     logged_in: false,
+  //     user: {},
+  //   });
+  // };
   const isLoggedIn = () => {
     axios
       .get('http://localhost:3001/api/v1/logged_in', { withCredentials: true })
       .then((response) => {
+        console.log('Response from App', response);
         if (response.data.logged_in && !loggedIn.logged_in) {
           setLoggedIn({
             logged_in: true,
@@ -60,13 +64,14 @@ const App = () => {
   return (
     <div className="App">
       <NavBar
-        loggedIn={loggedIn.logged_in}
+        isLoggedIn={loggedIn.logged_in}
+        // props={loggedIn}
         user={loggedIn.user}
-        handleLogout={setLoggedIn}
+        handleSignOut={(loggedIn) => setLoggedIn(loggedIn)}
       />
-      <Jobs />
+      <Jobs isLoggedIn={loggedIn.logged_in} />
       <Footer />
-      {console.log(loggedIn.logged_in)}
+      {console.log('from App return', loggedIn)}
     </div>
   );
 };

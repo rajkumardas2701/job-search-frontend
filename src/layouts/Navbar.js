@@ -4,24 +4,26 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 import '../styles/NavBar.css';
 
-const NavBar = ({ loggedIn, user, handlelogout }) => {
-  console.log(loggedIn);
+const NavBar = ({ isLoggedIn, user, handleSignOut }) => {
   const history = useHistory();
-  const [state, setState] = useState(loggedIn);
+  const [loginState, setLoginState] = useState(isLoggedIn);
+  const [userState, setUserState] = useState(user);
   useEffect(() => {
-    setState(loggedIn);
-  }, [loggedIn]);
+    setLoginState(isLoggedIn);
+    setUserState(user);
+  }, [isLoggedIn, user]);
 
-  const handleSignOut = (event) => {
+  const handlelogout = (event) => {
     event.preventDefault();
     console.log('inside handle logout');
-    axios.post('http://localhost:3001/api/v1/logout', { withCredentials: true })
+    axios.delete(`http://localhost:3001/api/v1/sessions/${userState.id}`, { withCredentials: true })
       .then((response) => {
-        console.log(response);
-        handlelogout({
+        console.log('Response from Logout', response);
+        handleSignOut({
           logged_in: false,
           user: {},
         });
+        console.log('reached end of logout');
       })
       .catch((error) => {
         console.log(error);
@@ -29,55 +31,68 @@ const NavBar = ({ loggedIn, user, handlelogout }) => {
     history.push('/signin');
   };
 
+  const handlelogin = (event) => {
+    event.preventDefault();
+    history.push('/signin');
+  };
+
+  let showUser;
+
+  if (userState && userState.firstname === undefined) {
+    showUser = '';
+  } else if (userState) {
+    showUser = `Hello, ${userState.firstname}`;
+  } else {
+    showUser = '';
+  }
+  const btnfunc = (loginState) => {
+    if (loginState) {
+      return (
+        <button
+          type="button"
+          className="logout-btn"
+          onClick={handlelogout}
+        >
+          Logout
+        </button>
+      );
+    }
+    return (
+      <button
+        type="button"
+        className="logout-btn"
+        onClick={handlelogin}
+      >
+        Login
+      </button>
+    );
+  };
   return (
     <>
-      {console.log(loggedIn)}
-      {
-        (state)
-
-          ? (
-
-            <div className="navbar">
-              <div>
-                <Link to="/" className="logoAnc">
-                  <h1 className="logoHead" data-testid="navbar-heading">JobHub</h1>
-                </Link>
-              </div>
-              <div>
-                {
-          user.firstname ? `Hello, ${user.firstname}` : ''
-        }
-              </div>
-              {
-          (loggedIn)
-            ? (
-              <button type="button" onClick={handleSignOut} className="login-logout-btn">Logout</button>
-            ) : (
-              <div>
-                <Link to="/signin">Signin</Link>
-                <Link to="/signup">Signup</Link>
-              </div>
-            )
-          }
-            </div>
-          )
-          : (
-            <div />
-          )
-      }
+      {console.log('from Nav return', loginState)}
+      <div className="navbar">
+        <div>
+          <Link to="/" className="logoAnc">
+            <h1 className="logoHead" data-testid="navbar-heading">JobHub</h1>
+          </Link>
+        </div>
+        <div>{showUser}</div>
+        <div>{btnfunc(loginState)}</div>
+      </div>
     </>
   );
 };
 
 NavBar.propTypes = {
-  loggedIn: PropTypes.bool,
+  isLoggedIn: PropTypes.bool,
   user: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  handlelogout: PropTypes.func.isRequired,
+  handleSignOut: PropTypes.func,
 };
 
 NavBar.defaultProps = {
-  loggedIn: false,
+  isLoggedIn: true,
   user: {},
+  handleSignOut: () => {},
 };
 
 export default NavBar;
