@@ -4,6 +4,7 @@ import App from './components/App';
 import Signup from './components/Signup';
 import Signin from './components/Signin';
 // import Jobs from './containers/Jobs';
+// import AddJob from './components/AddJob';
 import NotFound from './layouts/NotFound';
 
 const Routes = () => (
