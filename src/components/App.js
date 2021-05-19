@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import Footer from '../layouts/Footer';
 import NavBar from '../layouts/Navbar';
-// import Home from '../layouts/Home';
+// import Signin from './Signin';
+import Home from '../layouts/Home';
 import Jobs from '../containers/Jobs';
 import '../styles/App.css';
 
@@ -36,7 +37,7 @@ const App = () => {
 
   useEffect(() => {
     isLoggedIn();
-  }, []);
+  }, [loggedIn]);
 
   return (
     <div className="App">
@@ -46,7 +47,9 @@ const App = () => {
         user={loggedIn.user}
         handleSignOut={(loggedIn) => setLoggedIn(loggedIn)}
       />
-      <Jobs isLoggedIn={loggedIn.logged_in} />
+      {
+        (loggedIn.logged_in) ? (<Jobs />) : (<Home />)
+      }
       <Footer />
       {console.log('from App return', loggedIn)}
     </div>
