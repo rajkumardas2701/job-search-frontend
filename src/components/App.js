@@ -13,12 +13,6 @@ const App = () => {
     logged_in: false,
     user: {},
   });
-  // const handleSignOut = () => {
-  //   setLoggedIn({
-  //     logged_in: false,
-  //     user: {},
-  //   });
-  // };
   const isLoggedIn = () => {
     axios
       .get('http://localhost:3001/api/v1/logged_in', { withCredentials: true })
@@ -43,23 +37,6 @@ const App = () => {
   useEffect(() => {
     isLoggedIn();
   }, []);
-
-  // const handleLogout = (event) => {
-  //   event.preventDefault();
-  //   console.log('inside handle logout');
-  //   axios.delete('http://localhost:3001/api/v1/logout', { withCredentials: true })
-  //     .then((response) => {
-  //       console.log(response);
-  //       setLoggedIn({
-  //         logged_in: false,
-  //         user: {},
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  //   history.push('/signin');
-  // };
 
   return (
     <div className="App">

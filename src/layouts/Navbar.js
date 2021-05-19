@@ -90,7 +90,7 @@ NavBar.propTypes = {
 };
 
 NavBar.defaultProps = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   user: {},
   handleSignOut: () => {},
 };
