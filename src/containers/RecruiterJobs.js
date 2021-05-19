@@ -23,7 +23,7 @@ const RecruiterJobs = () => {
         Add Job
       </button>
       )}
-      {showForm && <AddJob />}
+      {showForm && <AddJob handleForm={(showForm) => setShowForm(showForm)} />}
     </div>
   );
 };
