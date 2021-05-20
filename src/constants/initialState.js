@@ -11,6 +11,10 @@ const initialState = {
     isError: false,
     jobs: [],
   },
+  postJobData: {
+    isLoading: false,
+    errors: [],
+  },
 };
 
 const userTypes = ['Candidate', 'Recruiter'];

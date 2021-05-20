@@ -7,6 +7,10 @@ export const FETCH_JOBS_INIT = 'FETCH_JOBS_INIT';
 export const FETCH_JOBS_SUCCESS = 'FETCH_JOBS_SUCCESS';
 export const FETCH_JOBS_FAIL = 'FETCH_JOBS_FAIL';
 
+export const POST_JOBS_INIT = 'POST_JOBS_INIT';
+export const POST_JOBS_SUCCESS = 'POST_JOBS_SUCCESS';
+export const POST_JOBS_FAIL = 'POST_JOBS_FAIL';
+
 export const authInit = () => ({
   type: AUTH_INIT,
 });
@@ -36,4 +40,17 @@ export const fetchJobsSuccess = (data) => ({
 
 export const fetchJobsFailure = () => ({
   type: FETCH_JOBS_FAIL,
+});
+
+export const postJobInit = () => ({
+  type: POST_JOBS_INIT,
+});
+
+export const postJobSuccess = (data) => ({
+  type: POST_JOBS_SUCCESS,
+  payload: data,
+});
+
+export const postJobfailure = () => ({
+  type: POST_JOBS_FAIL,
 });

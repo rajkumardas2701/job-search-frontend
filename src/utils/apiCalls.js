@@ -36,6 +36,8 @@ const jobsCall = async (initialize, success, failure) => {
   }
 };
 
+// const postJob = 
+
 // const isLoggedIn = async () => {
 //   console.log('inside apicalls');
 //   let response;
