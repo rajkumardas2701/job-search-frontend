@@ -2,8 +2,11 @@ import '../styles/Signup.css';
 import React, { useEffect, useState } from 'react';
 // import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
-const AddJob = ({ handleForm }) => {
+const AddJob = ({
+  handleForm, postInit, postSuccess, postFailure,
+}) => {
   // const history = useHistory();
   const [state, setState] = useState({
     role: '',
@@ -33,7 +36,24 @@ const AddJob = ({ handleForm }) => {
   };
 
   const handleSubmit = () => {
-
+    const job = {
+      role, location, salary, skills,
+    };
+    postInit(true);
+    axios
+      .post('http://localhost:3001/api/v1/jobs', { job }, { withCredentials: true })
+      .then((response) => {
+        if (response.data.status === 'created') {
+          postSuccess(response.data.job);
+          console.log(response.data.job);
+        } else {
+          postFailure(response.data.errors);
+        }
+      })
+      .catch((error) => {
+        postFailure(error);
+      });
+    handleForm(!!showForm);
   };
 
   return (
@@ -96,6 +116,9 @@ const AddJob = ({ handleForm }) => {
 
 AddJob.propTypes = {
   handleForm: PropTypes.func.isRequired,
+  postInit: PropTypes.func.isRequired,
+  postSuccess: PropTypes.func.isRequired,
+  postFailure: PropTypes.func.isRequired,
 };
 
 // AddJob.defaultProps = {

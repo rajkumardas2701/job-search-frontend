@@ -36,7 +36,8 @@ const RecruiterJobs = ({
         postFailure={(errors) => postFailure(errors)}
       />
       )}
-      {job && <div>Job has been added</div>}
+      {console.log(job)}
+      {job.length > 0 && <div>Job has been added</div>}
       {errors && console.log(errors)}
       {isLoading && <div>Loading Job</div>}
 
