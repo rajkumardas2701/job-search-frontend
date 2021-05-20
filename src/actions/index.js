@@ -42,8 +42,9 @@ export const fetchJobsFailure = () => ({
   type: FETCH_JOBS_FAIL,
 });
 
-export const postJobInit = () => ({
+export const postJobInit = (data) => ({
   type: POST_JOBS_INIT,
+  payload: data,
 });
 
 export const postJobSuccess = (data) => ({
@@ -51,6 +52,7 @@ export const postJobSuccess = (data) => ({
   payload: data,
 });
 
-export const postJobfailure = () => ({
+export const postJobfailure = (errors) => ({
   type: POST_JOBS_FAIL,
+  payload: errors,
 });
