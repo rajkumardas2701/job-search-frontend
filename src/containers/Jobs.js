@@ -32,7 +32,7 @@ const Jobs = ({
           <>
             {(currentUser.user.user_type === 'Candidate')
               ? (
-                <CandidateJobs jobs={jobs} />
+                <CandidateJobs jobs={jobs} user={currentUser} />
               )
               : (
                 <RecruiterJobs
@@ -41,6 +41,7 @@ const Jobs = ({
                   fetchInit={fetchInit}
                   fetchSuccess={fetchSuccess}
                   fetchFail={fetchFail}
+                  user={currentUser}
                 />
               )}
           </>

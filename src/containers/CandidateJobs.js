@@ -8,7 +8,7 @@ import Job from '../components/Job';
 // import { jobsCall } from '../utils/apiCalls';
 import '../styles/CandidateJobs.css';
 
-const CandidateJobs = ({ jobs }) => {
+const CandidateJobs = ({ jobs, user }) => {
   console.log(jobs);
   useEffect(() => {
     // jobsCall(fetchInit, fetchSuccess, fetchFail);
@@ -21,7 +21,7 @@ const CandidateJobs = ({ jobs }) => {
       <div className="jobs-container">
         {
           (jobs && jobs.length)
-            ? (jobs.map((job) => <Job job={job} key={job.id} />))
+            ? (jobs.map((job) => <Job job={job} key={job.id} user={user} />))
             : (<div>No jobs to apply. You will see them when a recuiter post them</div>)
         }
       </div>
@@ -36,12 +36,15 @@ CandidateJobs.propTypes = {
   // isLoading: PropTypes.bool,
   // isError: PropTypes.bool,
   jobs: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  user: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
+
 };
 
 CandidateJobs.defaultProps = {
   // isLoading: false,
   // isError: false,
   jobs: [],
+  // user: {},
 };
 
 export default CandidateJobs;

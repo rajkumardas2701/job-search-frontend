@@ -14,6 +14,7 @@ const RecruiterJobs = ({
   fetchInit,
   fetchSuccess,
   fetchFail,
+  user,
 }) => {
   const [showForm, setShowForm] = useState(false);
   const [showJobs, setShowJobs] = useState(jobs);
@@ -29,7 +30,7 @@ const RecruiterJobs = ({
       <div className="jobs-container">
         {
           (jobs && jobs.length)
-            ? (jobs.map((job) => <Job job={job} key={job.id} />))
+            ? (jobs.map((job) => <Job job={job} key={job.id} user={user} />))
             : (<div>You didn&apos;t add any job yet. Click on Add Job to get started</div>)
         }
       </div>
@@ -75,6 +76,7 @@ RecruiterJobs.propTypes = {
   fetchInit: PropTypes.func,
   fetchSuccess: PropTypes.func,
   fetchFail: PropTypes.func,
+  user: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
 };
 
 RecruiterJobs.defaultProps = {
