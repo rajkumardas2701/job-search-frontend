@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
 import React, { useEffect } from 'react';
 // import { useHistory } from 'react-router-dom';
-import { CircleToBlockLoading } from 'react-loadingg';
+// import { CircleToBlockLoading } from 'react-loadingg';
 import Job from '../components/Job';
 // import { fetchJobsInit, fetchJobsSuccess, fetchJobsFailure } from '../actions/index';
 // import { jobsCall } from '../utils/apiCalls';
@@ -20,8 +20,9 @@ const CandidateJobs = ({ jobs }) => {
       {/* {isError && <div>Couldn&apos;t fetch the data now, please try again later</div>} */}
       <div className="jobs-container">
         {
-          (jobs && jobs.length) ? (jobs.map((job) => <Job job={job} key={job.id} />))
-            : (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
+          // (jobs && jobs.length) ?
+          (jobs.map((job) => <Job job={job} key={job.id} />))
+            // : (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
         }
       </div>
 
