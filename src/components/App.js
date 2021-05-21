@@ -29,7 +29,7 @@ const App = () => {
             logged_in: false,
             user: {},
           });
-          history.push('/signin');
+          history.push('/home');
         }
       })
       .catch((error) => error);
