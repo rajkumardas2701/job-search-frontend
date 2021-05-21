@@ -29,7 +29,7 @@ const authCall = (authType, user, initialize, success, failure, history) => {
 const jobsCall = async (initialize, success, failure) => {
   initialize();
   try {
-    const result = await axios.get('http://localhost:3001/api/v1/jobs');
+    const result = await axios.get('http://localhost:3001/api/v1/jobs', { withCredentials: true });
     success(result.data.jobs);
   } catch (error) {
     failure(error);
