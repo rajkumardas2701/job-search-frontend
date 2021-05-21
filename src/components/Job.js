@@ -12,8 +12,8 @@ const Job = ({ job, user }) => (
       <li>{job.skills}</li>
       {
       (user.user.user_type === 'Candidate')
-        ? (<Link to="/">View and Apply</Link>)
-        : (<Link to="/">Check Applicants</Link>)
+        ? (<Link to={`/job_details/${job.id}`}>View and Apply</Link>)
+        : (<Link to={`/job_apps/${job.id}`}>Check Applicants</Link>)
       }
     </ul>
   </>

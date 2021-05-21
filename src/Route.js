@@ -6,6 +6,8 @@ import Signin from './components/Signin';
 // import Jobs from './containers/Jobs';
 // import AddJob from './components/AddJob';
 import NotFound from './layouts/NotFound';
+import JobDetail from './components/JobDetail';
+import JobApplicants from './containers/JobApplicants';
 
 const Routes = () => (
   <BrowserRouter>
@@ -13,7 +15,8 @@ const Routes = () => (
       <Route exact path="/" component={App} />
       <Route exact path="/signup" component={Signup} />
       <Route exact path="/signin" component={Signin} />
-      {/* <Route exact path="/jobs" component={Jobs} /> */}
+      <Route exact path="/job_details/:id" component={JobDetail} />
+      <Route exact path="/job_apps/:id" component={JobApplicants} />
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>
