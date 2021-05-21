@@ -10,7 +10,10 @@ import AddJob from '../components/AddJob';
 import Job from '../components/Job';
 
 const RecruiterJobs = ({
-  postInit, postSuccess, postFailure, isLoading, errors, job, jobs,
+  postInit, postSuccess, postFailure, isLoading, errors, job, jobs, jobsCall,
+  fetchInit,
+  fetchSuccess,
+  fetchFail,
 }) => {
   const [showForm, setShowForm] = useState(false);
   const [showJobs, setShowJobs] = useState(jobs);
@@ -45,6 +48,10 @@ const RecruiterJobs = ({
         postInit={(isLoading) => postInit(isLoading)}
         postSuccess={(job) => postSuccess(job)}
         postFailure={(errors) => postFailure(errors)}
+        jobsCall={jobsCall}
+        fetchInit={fetchInit}
+        fetchSuccess={fetchSuccess}
+        fetchFail={fetchFail}
       />
       )}
       {console.log(job)}
@@ -64,6 +71,10 @@ RecruiterJobs.propTypes = {
   errors: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   job: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   jobs: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  jobsCall: PropTypes.func,
+  fetchInit: PropTypes.func,
+  fetchSuccess: PropTypes.func,
+  fetchFail: PropTypes.func,
 };
 
 RecruiterJobs.defaultProps = {
@@ -71,6 +82,10 @@ RecruiterJobs.defaultProps = {
   errors: [],
   job: [],
   jobs: [],
+  jobsCall: () => {},
+  fetchInit: () => {},
+  fetchSuccess: () => {},
+  fetchFail: () => {},
 };
 
 const mapStateToProps = (state) => ({

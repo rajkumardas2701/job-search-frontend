@@ -35,7 +35,13 @@ const Jobs = ({
                 <CandidateJobs jobs={jobs} />
               )
               : (
-                <RecruiterJobs jobs={jobs} />
+                <RecruiterJobs
+                  jobs={jobs}
+                  jobsCall={jobsCall}
+                  fetchInit={fetchInit}
+                  fetchSuccess={fetchSuccess}
+                  fetchFail={fetchFail}
+                />
               )}
           </>
 

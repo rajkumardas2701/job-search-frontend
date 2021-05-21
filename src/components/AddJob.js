@@ -5,7 +5,10 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 const AddJob = ({
-  handleForm, postInit, postSuccess, postFailure,
+  handleForm, postInit, postSuccess, postFailure, jobsCall,
+  fetchInit,
+  fetchSuccess,
+  fetchFail,
 }) => {
   // const history = useHistory();
   const [state, setState] = useState({
@@ -45,6 +48,7 @@ const AddJob = ({
       .then((response) => {
         if (response.data.status === 'created') {
           postSuccess(response.data.job);
+          jobsCall(fetchInit, fetchSuccess, fetchFail);
           console.log(response.data.job);
         } else {
           postFailure(response.data.errors);
@@ -119,10 +123,18 @@ AddJob.propTypes = {
   postInit: PropTypes.func.isRequired,
   postSuccess: PropTypes.func.isRequired,
   postFailure: PropTypes.func.isRequired,
+  jobsCall: PropTypes.func,
+  fetchInit: PropTypes.func,
+  fetchSuccess: PropTypes.func,
+  fetchFail: PropTypes.func,
 };
 
-// AddJob.defaultProps = {
-//   props: false,
-// };
+AddJob.defaultProps = {
+  // props: false,
+  jobsCall: () => {},
+  fetchInit: () => {},
+  fetchSuccess: () => {},
+  fetchFail: () => {},
+};
 
 export default AddJob;
