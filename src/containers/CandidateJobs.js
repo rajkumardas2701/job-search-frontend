@@ -20,9 +20,9 @@ const CandidateJobs = ({ jobs }) => {
       {/* {isError && <div>Couldn&apos;t fetch the data now, please try again later</div>} */}
       <div className="jobs-container">
         {
-          // (jobs && jobs.length) ?
-          (jobs.map((job) => <Job job={job} key={job.id} />))
-            // : (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
+          (jobs && jobs.length)
+            ? (jobs.map((job) => <Job job={job} key={job.id} />))
+            : (<div>No jobs to apply. You will see them when a recuiter post them</div>)
         }
       </div>
 

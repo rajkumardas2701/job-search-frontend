@@ -24,6 +24,7 @@ const Jobs = ({
   return (
     <div>
       {/* {console.log(currentUser.user.user_type)} */}
+      {console.log(jobs)}
       {isError && <div>Couldn&apos;t fetch the data now, please try again later</div>}
       { isLoading
         ? (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
@@ -34,7 +35,7 @@ const Jobs = ({
                 <CandidateJobs jobs={jobs} />
               )
               : (
-                <RecruiterJobs />
+                <RecruiterJobs jobs={jobs} />
               )}
           </>
 
