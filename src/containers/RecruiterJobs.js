@@ -15,9 +15,13 @@ const RecruiterJobs = ({
   fetchSuccess,
   fetchFail,
   user,
+  isLoggedIn,
 }) => {
   const [showForm, setShowForm] = useState(false);
   const [showJobs, setShowJobs] = useState(jobs);
+  const [loginState, setLoginState] = useState(isLoggedIn);
+
+  useEffect(() => { setLoginState(isLoggedIn); }, [isLoggedIn]);
   useEffect(() => { setShowJobs(showJobs); }, [showJobs]);
   // const history = useHistory();
   const handleClick = () => {
@@ -30,7 +34,14 @@ const RecruiterJobs = ({
       <div className="jobs-container">
         {
           (jobs && jobs.length)
-            ? (jobs.map((job) => <Job job={job} key={job.id} user={user} />))
+            ? (jobs.map((job) => (
+              <Job
+                job={job}
+                key={job.id}
+                user={user}
+                isLoggedIn={loginState}
+              />
+            )))
             : (<div>You didn&apos;t add any job yet. Click on Add Job to get started</div>)
         }
       </div>
@@ -69,6 +80,7 @@ RecruiterJobs.propTypes = {
   postSuccess: PropTypes.func.isRequired,
   postFailure: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
+  isLoggedIn: PropTypes.bool,
   errors: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   job: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   jobs: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
@@ -84,6 +96,7 @@ RecruiterJobs.defaultProps = {
   errors: [],
   job: [],
   jobs: [],
+  isLoggedIn: false,
   jobsCall: () => {},
   fetchInit: () => {},
   fetchSuccess: () => {},

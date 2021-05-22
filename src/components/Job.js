@@ -34,7 +34,24 @@ const Job = ({ job, user, isLoggedIn }) => {
 
             </div>
           )
-          : (<Link to={`/job_apps/${job.id}`}>Check Applicants</Link>)
+          : (
+            <div>
+              {
+              (user && loginState) ? (
+                <Link to={{
+                  pathname: `/job_apps/${job.id}`,
+                  state: {
+                    user: user.user,
+                    loginState,
+                  },
+                }}
+                >
+                  Check Applicants
+                </Link>
+              ) : (<div>Still loading</div>)
+            }
+            </div>
+          )
         }
       </ul>
     </>

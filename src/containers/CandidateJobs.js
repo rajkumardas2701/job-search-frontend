@@ -12,9 +12,6 @@ const CandidateJobs = ({ jobs, user, isLoggedIn }) => {
   console.log(jobs);
   const [loginState, setLoginState] = useState(isLoggedIn);
 
-  useEffect(() => {
-    // jobsCall(fetchInit, fetchSuccess, fetchFail);
-  }, []);
   useEffect(() => { setLoginState(isLoggedIn); }, [isLoggedIn]);
 
   return (

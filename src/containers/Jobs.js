@@ -49,6 +49,7 @@ const Jobs = ({
                   fetchSuccess={fetchSuccess}
                   fetchFail={fetchFail}
                   user={currentUser}
+                  isLoggedIn={loginState}
                 />
               )}
           </>
