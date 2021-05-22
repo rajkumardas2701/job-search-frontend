@@ -44,8 +44,9 @@ const jobCall = async (initialize, success, failure, id) => {
   initialize();
   try {
     const result = await axios.get(`http://localhost:3001/api/v1/jobs/${id}`, { withCredentials: true });
-    if (result.data.jobs) {
-      success(result.data.jobs);
+    console.log(result);
+    if (result.data.job) {
+      success(result.data.job);
     } else {
       failure(result.data.errors);
     }
