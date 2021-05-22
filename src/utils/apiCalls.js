@@ -30,23 +30,28 @@ const jobsCall = async (initialize, success, failure) => {
   initialize();
   try {
     const result = await axios.get('http://localhost:3001/api/v1/jobs', { withCredentials: true });
-    success(result.data.jobs);
+    if (result.data.jobs) {
+      success(result.data.jobs);
+    } else {
+      failure(result.data.errors);
+    }
   } catch (error) {
     failure(error);
   }
 };
 
-// const postJob =
+const jobCall = async (initialize, success, failure, id) => {
+  initialize();
+  try {
+    const result = await axios.get(`http://localhost:3001/api/v1/jobs/${id}`, { withCredentials: true });
+    if (result.data.jobs) {
+      success(result.data.jobs);
+    } else {
+      failure(result.data.errors);
+    }
+  } catch (error) {
+    failure(error);
+  }
+};
 
-// const isLoggedIn = async () => {
-//   console.log('inside apicalls');
-//   let response;
-//   try {
-//     response = await axios.get('http://localhost:3001/api/v1/logged_in', { withCredentials: true });
-//   } catch (error) {
-//     response = error;
-//   }
-//   return response;
-// };
-
-export { authCall, jobsCall };
+export { authCall, jobsCall, jobCall };

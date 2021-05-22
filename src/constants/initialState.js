@@ -14,7 +14,12 @@ const initialState = {
   postJobData: {
     isLoading: false,
     errors: [],
-    job: [],
+    job: {},
+  },
+  jobData: {
+    isLoading: false,
+    isError: false,
+    job: {},
   },
 };
 
