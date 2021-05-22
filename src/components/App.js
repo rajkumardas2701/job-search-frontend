@@ -48,7 +48,14 @@ const App = () => {
         handleSignOut={(loggedIn) => setLoggedIn(loggedIn)}
       />
       {
-        (loggedIn.logged_in) ? (<Jobs user={loggedIn.user} />) : (<Home />)
+        (loggedIn.logged_in)
+          ? (
+            <Jobs
+              user={loggedIn.user}
+              isLoggedIn={loggedIn.logged_in}
+              handleSignOut={(loggedIn) => setLoggedIn(loggedIn)}
+            />
+          ) : (<Home />)
       }
       <Footer />
       {console.log('from App return', loggedIn)}

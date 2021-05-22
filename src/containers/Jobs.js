@@ -12,18 +12,21 @@ import RecruiterJobs from './RecruiterJobs';
 import '../styles/Jobs.css';
 
 const Jobs = ({
-  fetchInit, fetchSuccess, fetchFail, isLoading, isError, user, jobs,
+  fetchInit, fetchSuccess, fetchFail, isLoading, isError, user, jobs, isLoggedIn,
 }) => {
   const [currentUser, setCurrentUser] = useState({ user });
+  const [loginState, setLoginState] = useState(isLoggedIn);
   useEffect(() => {
     // jobsCall(fetchInit, fetchSuccess, fetchFail);
     setCurrentUser(currentUser);
     jobsCall(fetchInit, fetchSuccess, fetchFail);
   }, [currentUser]);
 
+  useEffect(() => { setLoginState(isLoggedIn); }, [isLoggedIn]);
+
   return (
     <div>
-      {/* {console.log(currentUser.user.user_type)} */}
+      {/* {console.log('login state passed', loginState)} */}
       {console.log(jobs)}
       {isError && <div>Couldn&apos;t fetch the data now, please try again later</div>}
       { isLoading
@@ -32,7 +35,11 @@ const Jobs = ({
           <>
             {(currentUser.user.user_type === 'Candidate')
               ? (
-                <CandidateJobs jobs={jobs} user={currentUser} />
+                <CandidateJobs
+                  jobs={jobs}
+                  user={currentUser}
+                  isLoggedIn={loginState}
+                />
               )
               : (
                 <RecruiterJobs
@@ -66,6 +73,7 @@ Jobs.propTypes = {
   fetchFail: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
   isError: PropTypes.bool,
+  isLoggedIn: PropTypes.bool,
   user: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   jobs: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
 };
@@ -75,6 +83,7 @@ Jobs.defaultProps = {
   isError: false,
   jobs: [],
   user: {},
+  isLoggedIn: false,
 };
 
 const mapStateToProps = (state) => ({

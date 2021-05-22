@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 // import { connect } from 'react-redux';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // import { useHistory } from 'react-router-dom';
 // import { CircleToBlockLoading } from 'react-loadingg';
 import Job from '../components/Job';
@@ -8,11 +8,14 @@ import Job from '../components/Job';
 // import { jobsCall } from '../utils/apiCalls';
 import '../styles/CandidateJobs.css';
 
-const CandidateJobs = ({ jobs, user }) => {
+const CandidateJobs = ({ jobs, user, isLoggedIn }) => {
   console.log(jobs);
+  const [loginState, setLoginState] = useState(isLoggedIn);
+
   useEffect(() => {
     // jobsCall(fetchInit, fetchSuccess, fetchFail);
   }, []);
+  useEffect(() => { setLoginState(isLoggedIn); }, [isLoggedIn]);
 
   return (
     <div>
@@ -21,7 +24,14 @@ const CandidateJobs = ({ jobs, user }) => {
       <div className="jobs-container">
         {
           (jobs && jobs.length)
-            ? (jobs.map((job) => <Job job={job} key={job.id} user={user} />))
+            ? (jobs.map((job) => (
+              <Job
+                job={job}
+                key={job.id}
+                user={user}
+                isLoggedIn={loginState}
+              />
+            )))
             : (<div>No jobs to apply. You will see them when a recuiter post them</div>)
         }
       </div>
@@ -37,7 +47,7 @@ CandidateJobs.propTypes = {
   // isError: PropTypes.bool,
   jobs: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   user: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
-
+  isLoggedIn: PropTypes.bool,
 };
 
 CandidateJobs.defaultProps = {
@@ -45,6 +55,7 @@ CandidateJobs.defaultProps = {
   // isError: false,
   jobs: [],
   // user: {},
+  isLoggedIn: false,
 };
 
 export default CandidateJobs;
