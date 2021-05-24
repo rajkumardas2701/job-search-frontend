@@ -21,6 +21,11 @@ const initialState = {
     isError: false,
     jobRes: '',
   },
+  appsData: {
+    isLoading: false,
+    isError: false,
+    apps: [],
+  },
 };
 
 const userTypes = ['Candidate', 'Recruiter'];

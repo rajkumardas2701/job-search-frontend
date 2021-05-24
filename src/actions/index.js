@@ -7,6 +7,10 @@ export const FETCH_JOBS_INIT = 'FETCH_JOBS_INIT';
 export const FETCH_JOBS_SUCCESS = 'FETCH_JOBS_SUCCESS';
 export const FETCH_JOBS_FAIL = 'FETCH_JOBS_FAIL';
 
+export const FETCH_APPS_INIT = 'FETCH_APPS_INIT';
+export const FETCH_APPS_SUCCESS = 'FETCH_APPS_SUCCESS';
+export const FETCH_APPS_FAIL = 'FETCH_APPS_FAIL';
+
 export const APPLY_JOB_INIT = 'APPLY_JOB_INIT';
 export const APPLY_JOB_SUCCESS = 'APPLY_JOB_SUCCESS';
 export const APPLY_JOB_FAIL = 'APPLY_JOB_FAIL';
@@ -72,4 +76,17 @@ export const postJobSuccess = (data) => ({
 export const postJobfailure = (errors) => ({
   type: POST_JOBS_FAIL,
   payload: errors,
+});
+
+export const fetchAppsInit = () => ({
+  type: FETCH_APPS_INIT,
+});
+
+export const fetchAppsSuccess = (data) => ({
+  type: FETCH_APPS_SUCCESS,
+  payload: data,
+});
+
+export const fetchAppsFailure = () => ({
+  type: FETCH_APPS_FAIL,
 });
