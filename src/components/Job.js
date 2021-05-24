@@ -19,7 +19,7 @@ const Job = ({ job, user, isLoggedIn }) => {
         (user.user.user_type === 'Candidate')
           ? (
             <div>
-              { (user && loginState) ? (
+              { (user && loginState && job) ? (
                 <Link to={{
                   pathname: `/job_details/${job.id}`,
                   state: {
@@ -38,7 +38,7 @@ const Job = ({ job, user, isLoggedIn }) => {
           : (
             <div>
               {
-              (user && loginState) ? (
+              (user && loginState && job) ? (
                 <Link to={{
                   pathname: `/job_apps/${job.id}`,
                   state: {

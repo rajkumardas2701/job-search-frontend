@@ -63,26 +63,28 @@ const applyJob = async (initialize, success, failure, app, history) => {
   }
 };
 
-const fetchAppsCall = async (initialize, success, failure, appId, history) => {
+const fetchAppsCall = async (initialize, success, failure, id, history) => {
+  console.log(history);
   initialize();
   try {
     const result = await axios
-      .get('http://localhost:3001/api/v1/apps', { appId }, { withCredentials: true });
+      .get(`http://localhost:3001/api/v1/apps/${id}`, { withCredentials: true });
     console.log(result);
-    // if (result.data.status === 200) {
-    //   success(result.data.message);
-    //   setTimeout(() => {
-    //     history.push('/');
-    //   }, 5000);
-    // } else {
-    //   failure(result.data.message);
-    //   setTimeout(() => {
-    //     history.push('/');
-    //   }, 5000);
-    // }
+    if (result.data.status === 200) {
+      // console.log('From ApiCall', result.data.applicants);
+      success(result.data.applicants);
+      // setTimeout(() => {
+      //   // history.push(`/job_apps/${id}`);
+      // }, 5000);
+    } else {
+      failure(result.data.message);
+      // setTimeout(() => {
+      //   history.push(`/job_apps/${id}`);
+      // }, 5000);
+    }
   } catch (error) {
     failure(error);
-    history.push('/');
+    // history.push(`/job_apps/${id}`);
   }
 };
 
