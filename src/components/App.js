@@ -18,7 +18,6 @@ const App = () => {
     axios
       .get('http://localhost:3001/api/v1/logged_in', { withCredentials: true })
       .then((response) => {
-        console.log('Response from App', response);
         if (response.data.logged_in && !loggedIn.logged_in) {
           setLoggedIn({
             logged_in: true,
@@ -58,7 +57,6 @@ const App = () => {
           ) : (<Home />)
       }
       <Footer />
-      {console.log('from App return', loggedIn)}
     </div>
   );
 };

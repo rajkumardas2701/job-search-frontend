@@ -19,10 +19,10 @@ const JobApplicants = ({
     history.push('/');
   }
   const handleClick = () => {
-    fetchAppsCall(appsInit, appsSuccess, appsFail, job.id, history);
+    fetchAppsCall(appsInit, appsSuccess, appsFail, job.id);
   };
   useEffect(() => {
-    fetchAppsCall(appsInit, appsSuccess, appsFail, job.id, history);
+    fetchAppsCall(appsInit, appsSuccess, appsFail, job.id);
   }, []);
 
   return (
@@ -56,8 +56,6 @@ const JobApplicants = ({
             )}
           </div>
         )}
-      {console.log('Job passed', job)}
-      {console.log(isLoading)}
       <Footer />
     </>
   );

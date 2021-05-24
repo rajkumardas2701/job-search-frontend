@@ -1,6 +1,5 @@
 import '../styles/Signup.css';
 import React, { useEffect, useState } from 'react';
-// import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
@@ -10,7 +9,6 @@ const AddJob = ({
   fetchSuccess,
   fetchFail,
 }) => {
-  // const history = useHistory();
   const [state, setState] = useState({
     role: '',
     location: '',
@@ -34,7 +32,6 @@ const AddJob = ({
       salary: '',
       skills: '',
     });
-    // history.push('/');
     handleForm(!!showForm);
   };
 
@@ -49,7 +46,6 @@ const AddJob = ({
         if (response.data.status === 'created') {
           postSuccess(response.data.job);
           jobsCall(fetchInit, fetchSuccess, fetchFail);
-          console.log(response.data.job);
         } else {
           postFailure(response.data.errors);
         }
@@ -62,7 +58,6 @@ const AddJob = ({
 
   return (
     <>
-      {console.log(showForm)}
       <div className="signup-container">
         <h2 className="form-head">Add a new Job</h2>
         <form onSubmit={handleSubmit} className="signup-form-container">

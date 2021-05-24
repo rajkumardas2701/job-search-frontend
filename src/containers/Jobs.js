@@ -26,8 +26,6 @@ const Jobs = ({
 
   return (
     <div>
-      {/* {console.log('login state passed', loginState)} */}
-      {console.log(jobs)}
       {isError && <div>Couldn&apos;t fetch the data now, please try again later</div>}
       { isLoading
         ? (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
@@ -59,15 +57,6 @@ const Jobs = ({
   );
 };
 
-// Jobs.propTypes = {
-//   user: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-// };
-
-// Jobs.defaultProps = {
-//   user: {},
-// };
-
-// export default Jobs;
 Jobs.propTypes = {
   fetchInit: PropTypes.func.isRequired,
   fetchSuccess: PropTypes.func.isRequired,

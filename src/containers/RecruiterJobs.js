@@ -23,14 +23,12 @@ const RecruiterJobs = ({
 
   useEffect(() => { setLoginState(isLoggedIn); }, [isLoggedIn]);
   useEffect(() => { setShowJobs(showJobs); }, [showJobs]);
-  // const history = useHistory();
   const handleClick = () => {
     setShowForm(!showForm);
   };
   return (
     <div>
       <h3 className="view">Recruiter&apos;s View</h3>
-      {console.log('from recruiter container', jobs)}
       <div className="jobs-container">
         {
           (jobs && jobs.length)
@@ -66,9 +64,8 @@ const RecruiterJobs = ({
         fetchFail={fetchFail}
       />
       )}
-      {console.log(job)}
       {job.length > 0 && <div>Job has been added</div>}
-      {errors && console.log(errors)}
+      {errors && <div>{errors}</div>}
       {isLoading && <div>Loading Job</div>}
 
     </div>

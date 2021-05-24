@@ -9,7 +9,6 @@ import Job from '../components/Job';
 import '../styles/CandidateJobs.css';
 
 const CandidateJobs = ({ jobs, user, isLoggedIn }) => {
-  console.log(jobs);
   const [loginState, setLoginState] = useState(isLoggedIn);
 
   useEffect(() => { setLoginState(isLoggedIn); }, [isLoggedIn]);

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 const Applicant = ({ app, job }) => (
   <div>
     <ul>
-      {console.log(app)}
       <li>{app.email}</li>
       <li>{app.firstname}</li>
       <li>{app.lastname}</li>

@@ -45,7 +45,6 @@ const JobDetail = ({
         job
       </div>
       )}
-      {console.log(job)}
       <ul>
         <li>{job.location}</li>
         <li>{job.salary}</li>
@@ -53,7 +52,6 @@ const JobDetail = ({
         <li>{job.skills}</li>
         <button type="button" onClick={handleClick}>Apply for Job</button>
       </ul>
-      {console.log(jobRes)}
       {
         isLoading ? (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
           : (

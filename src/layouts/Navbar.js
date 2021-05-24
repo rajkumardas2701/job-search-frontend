@@ -15,7 +15,6 @@ const NavBar = ({ isLoggedIn, user, handleSignOut }) => {
 
   const handlelogout = (event) => {
     event.preventDefault();
-    console.log('inside handle logout');
     axios.delete(`http://localhost:3001/api/v1/sessions/${userState.id}`, { withCredentials: true })
       .then((response) => {
         console.log('Response from Logout', response);
@@ -23,7 +22,6 @@ const NavBar = ({ isLoggedIn, user, handleSignOut }) => {
           logged_in: false,
           user: {},
         });
-        console.log('reached end of logout');
       })
       .catch((error) => {
         console.log(error);
@@ -69,7 +67,6 @@ const NavBar = ({ isLoggedIn, user, handleSignOut }) => {
   };
   return (
     <>
-      {console.log('from Nav return', loginState)}
       <div className="navbar">
         <div>
           <Link to="/" className="logoAnc">

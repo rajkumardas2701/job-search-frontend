@@ -45,7 +45,6 @@ const applyJob = async (initialize, success, failure, app, history) => {
   initialize();
   try {
     const result = await axios.post('http://localhost:3001/api/v1/apps', { app }, { withCredentials: true });
-    console.log(result);
     if (result.data.status === 200) {
       success(result.data.message);
       setTimeout(() => {
@@ -63,13 +62,11 @@ const applyJob = async (initialize, success, failure, app, history) => {
   }
 };
 
-const fetchAppsCall = async (initialize, success, failure, id, history) => {
-  console.log(history);
+const fetchAppsCall = async (initialize, success, failure, id) => {
   initialize();
   try {
     const result = await axios
       .get(`http://localhost:3001/api/v1/apps/${id}`, { withCredentials: true });
-    console.log(result);
     if (result.data.status === 200) {
       // console.log('From ApiCall', result.data.applicants);
       success(result.data.applicants);
