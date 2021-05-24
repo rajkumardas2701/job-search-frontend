@@ -1,25 +1,35 @@
-// import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React from 'react';
+// , { useEffect }
 // { useState, useEffect }
-import { useLocation, useParams } from 'react-router';
+import { useHistory, useLocation } from 'react-router';
+// , useParams
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CircleToBlockLoading } from 'react-loadingg';
 import NavBar from '../layouts/Navbar';
 import Footer from '../layouts/Footer';
 // import Home from '../layouts/Home';
-import { jobCall } from '../utils/apiCalls';
-import { fetchJobInit, fetchJobSuccess, fetchJobFailure } from '../actions/index';
+import { applyJob } from '../utils/apiCalls';
+import { applyJobInit, applyJobSuccess, applyJobFailure } from '../actions/index';
 
 const JobDetail = ({
-  fetchInit, fetchSuccess, fetchFail, isLoading, isError, job,
+  applyInit, applySuccess, applyFail, isLoading, isError, jobRes,
 }) => {
+  const history = useHistory();
   const location = useLocation();
-  const { user, loginState } = location.state;
-  const { id } = useParams();
-  useEffect(() => {
-    jobCall(fetchInit, fetchSuccess, fetchFail, id);
-  }, []);
+  const { user, loginState, job } = location.state;
+  // const { id } = useParams();
+  // useEffect(() => {
+  //   jobCall(fetchInit, fetchSuccess, fetchFail, id);
+  // }, []);
+
+  const handleClick = () => {
+    const data = {
+      user_id: user.id,
+      job_id: job.id,
+    };
+    applyJob(applyInit, applySuccess, applyFail, data, history);
+  };
 
   return (
     <>
@@ -27,16 +37,27 @@ const JobDetail = ({
         isLoggedIn={loginState}
         user={user}
       />
-      {isError && <div>Couldn&apos;t load the data</div>}
+      {isError && (
+      <div>
+        Couldn&apos;t apply for
+        {job.role}
+        {' '}
+        job
+      </div>
+      )}
+      {console.log(job)}
+      <ul>
+        <li>{job.location}</li>
+        <li>{job.salary}</li>
+        <li>{job.role}</li>
+        <li>{job.skills}</li>
+        <button type="button" onClick={handleClick}>Apply for Job</button>
+      </ul>
+      {console.log(jobRes)}
       {
         isLoading ? (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
           : (
-            <ul>
-              <li>{job.location}</li>
-              <li>{job.salary}</li>
-              <li>{job.role}</li>
-              <li>{job.skills}</li>
-            </ul>
+            <div>{jobRes}</div>
           )
       }
       <Footer />
@@ -45,29 +66,30 @@ const JobDetail = ({
 };
 
 JobDetail.propTypes = {
-  fetchInit: PropTypes.func.isRequired,
-  fetchSuccess: PropTypes.func.isRequired,
-  fetchFail: PropTypes.func.isRequired,
+  applyInit: PropTypes.func.isRequired,
+  applySuccess: PropTypes.func.isRequired,
+  applyFail: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
   isError: PropTypes.bool,
-  job: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
+  jobRes: PropTypes.string,
 };
 
 JobDetail.defaultProps = {
   isLoading: false,
   isError: false,
+  jobRes: '',
 };
 
 const mapStateToProps = (state) => ({
   isLoading: state.jobData.isLoading,
   isError: state.jobData.isError,
-  job: state.jobData.job,
+  jobRes: state.jobData.job,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchInit: () => dispatch(fetchJobInit()),
-  fetchSuccess: (data) => dispatch(fetchJobSuccess(data)),
-  fetchFail: () => dispatch(fetchJobFailure()),
+  applyInit: () => dispatch(applyJobInit()),
+  applySuccess: (jobRes) => dispatch(applyJobSuccess(jobRes)),
+  applyFail: (jobRes) => dispatch(applyJobFailure(jobRes)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(JobDetail);

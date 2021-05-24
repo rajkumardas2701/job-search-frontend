@@ -19,7 +19,7 @@ const initialState = {
   jobData: {
     isLoading: false,
     isError: false,
-    job: {},
+    jobRes: '',
   },
 };
 

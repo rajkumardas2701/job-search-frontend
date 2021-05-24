@@ -25,6 +25,7 @@ const Job = ({ job, user, isLoggedIn }) => {
                   state: {
                     user: user.user,
                     loginState,
+                    job,
                   },
                 }}
                 >

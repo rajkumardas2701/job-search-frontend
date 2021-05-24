@@ -40,19 +40,27 @@ const jobsCall = async (initialize, success, failure) => {
   }
 };
 
-const jobCall = async (initialize, success, failure, id) => {
+const applyJob = async (initialize, success, failure, app, history) => {
+  console.log(app);
   initialize();
   try {
-    const result = await axios.get(`http://localhost:3001/api/v1/jobs/${id}`, { withCredentials: true });
+    const result = await axios.post('http://localhost:3001/api/v1/apps', { app }, { withCredentials: true });
     console.log(result);
-    if (result.data.job) {
-      success(result.data.job);
+    if (result.data.status === 200) {
+      success(result.data.message);
+      setTimeout(() => {
+        history.push('/');
+      }, 5000);
     } else {
-      failure(result.data.errors);
+      failure(result.data.message);
+      setTimeout(() => {
+        history.push('/');
+      }, 5000);
     }
   } catch (error) {
     failure(error);
+    history.push('/');
   }
 };
 
-export { authCall, jobsCall, jobCall };
+export { authCall, jobsCall, applyJob };
