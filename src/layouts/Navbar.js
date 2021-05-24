@@ -39,7 +39,7 @@ const NavBar = ({ isLoggedIn, user, handleSignOut }) => {
   if (userState && userState.firstname === undefined) {
     showUser = '';
   } else if (userState) {
-    showUser = `Hello, ${userState.firstname}`;
+    showUser = `Hello, ${userState.firstname.charAt(0).toUpperCase() + userState.firstname.slice(1)}`;
   } else {
     showUser = '';
   }
@@ -68,13 +68,13 @@ const NavBar = ({ isLoggedIn, user, handleSignOut }) => {
   return (
     <>
       <div className="navbar">
-        <div>
+        <div className="logo-section">
           <Link to="/" className="logoAnc">
             <h1 className="logoHead" data-testid="navbar-heading">JobHub</h1>
           </Link>
         </div>
-        <div>{showUser}</div>
-        <div>{btnfunc(loginState)}</div>
+        <div className="nav-greet">{showUser}</div>
+        <div className="nav-btns">{btnfunc(loginState)}</div>
       </div>
     </>
   );
