@@ -13,7 +13,7 @@
 }
 
 .candidate-jobs-container {
-  height: 80vh;
+  height: 50vh;
   margin-top: 100px;
 }
 
@@ -30,4 +30,15 @@
 
 .carousel-container > div > p {
   font-size: medium !important;
+}
+
+.no-jobs-msg {
+  border: 1px solid black;
+  width: 70%;
+  margin: 300px auto 250px auto;
+  text-align: center;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  font-weight: 500;
 }

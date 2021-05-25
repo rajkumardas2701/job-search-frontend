@@ -29,8 +29,7 @@ const CandidateJobs = ({ jobs, user, isLoggedIn }) => {
                }
               </Carousel>
             )
-
-            : (<div>No jobs to apply. You will see them when a recuiter post them</div>)
+            : (<div className="no-jobs-msg">No jobs to apply. You will see them when recuiters post them here</div>)
         }
 
       </div>
@@ -39,21 +38,13 @@ const CandidateJobs = ({ jobs, user, isLoggedIn }) => {
   );
 };
 CandidateJobs.propTypes = {
-  // fetchInit: PropTypes.func.isRequired,
-  // fetchSuccess: PropTypes.func.isRequired,
-  // fetchFail: PropTypes.func.isRequired,
-  // isLoading: PropTypes.bool,
-  // isError: PropTypes.bool,
   jobs: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   user: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
   isLoggedIn: PropTypes.bool,
 };
 
 CandidateJobs.defaultProps = {
-  // isLoading: false,
-  // isError: false,
   jobs: [],
-  // user: {},
   isLoggedIn: false,
 };
 

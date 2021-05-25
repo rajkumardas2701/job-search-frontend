@@ -44,3 +44,8 @@
   font-family: 'Courier New', Courier, monospace;
   font-weight: 800;
 }
+
+.logout-btn:hover {
+  cursor: pointer !important;
+  background-color: white;
+}

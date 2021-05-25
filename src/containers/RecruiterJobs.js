@@ -1,13 +1,13 @@
 import '../styles/CandidateJobs.css';
 import '../styles/RecruiterJobs.css';
-// import { useHistory } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import { CircleToBlockLoading } from 'react-loadingg';
+import { Carousel } from 'react-responsive-carousel';
 import { postJobInit, postJobSuccess, postJobfailure } from '../actions/index';
 import AddJob from '../components/AddJob';
 import Job from '../components/Job';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const RecruiterJobs = ({
   postInit, postSuccess, postFailure, isLoading, errors, job, jobs, jobsCall,
@@ -27,20 +27,25 @@ const RecruiterJobs = ({
     setShowForm(!showForm);
   };
   return (
-    <div>
-      <h3 className="view">Recruiter&apos;s View</h3>
+    <div className="candidate-jobs-container">
       <div className="jobs-container">
         {
           (jobs && jobs.length)
-            ? (jobs.map((job) => (
-              <Job
-                job={job}
-                key={job.id}
-                user={user}
-                isLoggedIn={loginState}
-              />
-            )))
-            : (<div>You didn&apos;t add any job yet. Click on Add Job to get started</div>)
+            ? (
+              <Carousel showThumbs={false} className="carousel-container">
+                {
+              jobs.map((job) => (
+                <Job
+                  job={job}
+                  key={job.id}
+                  user={user}
+                  isLoggedIn={loginState}
+                />
+              ))
+          }
+              </Carousel>
+            )
+            : (<div className="no-jobs-msg">You didn&apos;t add any job yet. Click on Add Job to get started</div>)
         }
       </div>
       {!showForm && (

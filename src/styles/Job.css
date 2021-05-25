@@ -25,12 +25,17 @@
 }
 
 .job-btn {
-  border: 1px solid black;
   margin-top: 5px;
+}
+
+.text-link {
+  border: 1px solid black;
   height: 30px;
   background: rgb(9, 219, 9);
   border-radius: 5px;
-  padding-top: 4px;
+  padding: 7px 25%;
+  color: blue;
+  font-weight: 400;
 }
 
 .job-btn > a {

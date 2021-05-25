@@ -45,7 +45,7 @@ const Job = ({ job, user, isLoggedIn }) => {
                     job,
                   },
                 }}
-                className="link-style"
+                className="text-link"
               >
                 View and Apply
               </Link>
@@ -54,17 +54,19 @@ const Job = ({ job, user, isLoggedIn }) => {
           </div>
         )
         : (
-          <div>
+          <div className="job-btn">
             {
             (user && loginState && job) ? (
-              <Link to={{
-                pathname: `/job_apps/${job.id}`,
-                state: {
-                  user: user.user,
-                  loginState,
-                  job,
-                },
-              }}
+              <Link
+                to={{
+                  pathname: `/job_apps/${job.id}`,
+                  state: {
+                    user: user.user,
+                    loginState,
+                    job,
+                  },
+                }}
+                className="text-link"
               >
                 Check Applicants
               </Link>
