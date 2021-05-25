@@ -16,16 +16,13 @@ const NavBar = ({ isLoggedIn, user, handleSignOut }) => {
   const handlelogout = (event) => {
     event.preventDefault();
     axios.delete(`http://localhost:3001/api/v1/sessions/${userState.id}`, { withCredentials: true })
-      .then((response) => {
-        console.log('Response from Logout', response);
+      .then(() => {
         handleSignOut({
           logged_in: false,
           user: {},
         });
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => error);
     history.push('/signin');
   };
 
