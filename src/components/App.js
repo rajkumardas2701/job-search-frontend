@@ -5,7 +5,6 @@ import Footer from '../layouts/Footer';
 import NavBar from '../layouts/Navbar';
 import Home from '../layouts/Home';
 import Jobs from '../containers/Jobs';
-import '../styles/App.css';
 
 const App = () => {
   const history = useHistory();

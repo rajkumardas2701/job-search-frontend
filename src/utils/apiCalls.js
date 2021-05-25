@@ -73,6 +73,21 @@ const fetchAppsCall = async (initialize, success, failure, id) => {
   }
 };
 
+const deleteAppsCall = async (initialize, failure, id, history) => {
+  initialize();
+  try {
+    const result = await axios
+      .delete(`http://localhost:3001/api/v1/jobs/${id}`, { withCredentials: true });
+    if (result.data.status === 200) {
+      history.push('/');
+    } else {
+      failure(result.data.message);
+    }
+  } catch (error) {
+    failure(error);
+  }
+};
+
 export {
-  authCall, jobsCall, applyJob, fetchAppsCall,
+  authCall, jobsCall, applyJob, fetchAppsCall, deleteAppsCall,
 };

@@ -36,7 +36,7 @@
 }
 
 .job-apply-btn {
-  width: 100%;
+  width: 45%;
   height: 40px;
   margin-top: 10px;
   color: blue;
@@ -46,6 +46,38 @@
   border-radius: 7px;
 }
 
-.job-apply-btn:hover {
+.job-delete-btn {
+  width: 45%;
+  height: 40px;
+  font-weight: 400;
+  font-size: large;
+  color: white;
+  background-color: red;
+  border-radius: 7px;
+  margin-top: 10px;
+}
+
+.job-apply-btn:hover,
+.job-delete-btn:hover {
   cursor: pointer;
+}
+
+.job-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.carousel-container-applicant {
+  height: 40vh;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: -50px;
+}
+
+.carousel-container-applicant > div > p {
+  font-size: medium !important;
 }

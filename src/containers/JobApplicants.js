@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Carousel } from 'react-responsive-carousel';
 import Footer from '../layouts/Footer';
 import NavBar from '../layouts/Navbar';
-import { fetchAppsCall } from '../utils/apiCalls';
+import { fetchAppsCall, deleteAppsCall } from '../utils/apiCalls';
 import Applicant from '../components/Applicant';
 import { fetchAppsInit, fetchAppsSuccess, fetchAppsFailure } from '../actions/index';
 import '../styles/JobApplicants.css';
@@ -17,12 +17,19 @@ const JobApplicants = ({
 }) => {
   const history = useHistory();
   const location = useLocation();
-  const { user, loginState, job } = location.state;
   if (location.state === undefined) {
     history.push('/');
   }
+  const { user, loginState, job } = location.state;
   const handleClick = () => {
     fetchAppsCall(appsInit, appsSuccess, appsFail, job.id);
+  };
+  const handleDelete = () => {
+    // eslint-disable-next-line
+    const confirmBox = window.confirm('Are you sure you want to delete this Job?');
+    if (confirmBox === true) {
+      deleteAppsCall(appsInit, appsFail, job.id, history);
+    }
   };
   useEffect(() => {
     fetchAppsCall(appsInit, appsSuccess, appsFail, job.id);
@@ -60,20 +67,29 @@ const JobApplicants = ({
           <p className="job-label">Skills required:</p>
           <p className="job-value">{job.skills}</p>
         </div>
-        <button
-          type="button"
-          onClick={handleClick}
-          className="job-apply-btn"
-        >
-          check current list
-        </button>
+        <div className="job-btns">
+          <button
+            type="button"
+            onClick={handleClick}
+            className="job-apply-btn"
+          >
+            Refresh list
+          </button>
+          <button
+            type="button"
+            onClick={handleDelete}
+            className="job-delete-btn"
+          >
+            Delete this Job
+          </button>
+        </div>
       </div>
       {isLoading ? (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
         : (
           <div>
             { (apps && apps.length)
               ? (
-                <Carousel showThumbs={false} className="carousel-container">
+                <Carousel showThumbs={false} className="carousel-container-applicant">
                   {
               apps.map((app) => (
                 <Applicant

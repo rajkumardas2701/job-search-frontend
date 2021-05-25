@@ -7,7 +7,6 @@ import { fetchJobsInit, fetchJobsSuccess, fetchJobsFailure }
 import { jobsCall } from '../utils/apiCalls';
 import CandidateJobs from './CandidateJobs';
 import RecruiterJobs from './RecruiterJobs';
-import '../styles/Jobs.css';
 
 const Jobs = ({
   fetchInit, fetchSuccess, fetchFail, isLoading, isError, user, jobs, isLoggedIn,

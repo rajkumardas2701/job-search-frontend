@@ -1,5 +1,5 @@
-import '../styles/CandidateJobs.css';
 import '../styles/RecruiterJobs.css';
+import '../styles/CandidateJobs.css';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -28,11 +28,11 @@ const RecruiterJobs = ({
   };
   return (
     <div className="candidate-jobs-container">
-      <div className="jobs-container">
+      <div className="jobs-container-recruiter">
         {
           (jobs && jobs.length)
             ? (
-              <Carousel showThumbs={false} className="carousel-container">
+              <Carousel showThumbs={false} className="carousel-container-recruiter">
                 {
               jobs.map((job) => (
                 <Job
