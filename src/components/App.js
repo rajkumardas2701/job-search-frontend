@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import Footer from '../layouts/Footer';
 import NavBar from '../layouts/Navbar';
-// import Signin from './Signin';
 import Home from '../layouts/Home';
 import Jobs from '../containers/Jobs';
 import '../styles/App.css';
@@ -42,7 +41,6 @@ const App = () => {
     <div className="App">
       <NavBar
         isLoggedIn={loggedIn.logged_in}
-        // props={loggedIn}
         user={loggedIn.user}
         handleSignOut={(loggedIn) => setLoggedIn(loggedIn)}
       />

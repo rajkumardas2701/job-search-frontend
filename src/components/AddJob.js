@@ -1,4 +1,3 @@
-// import '../styles/Signup.css';
 import '../styles/AddJob.css';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -126,7 +125,6 @@ AddJob.propTypes = {
 };
 
 AddJob.defaultProps = {
-  // props: false,
   jobsCall: () => {},
   fetchInit: () => {},
   fetchSuccess: () => {},

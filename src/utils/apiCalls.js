@@ -64,20 +64,12 @@ const fetchAppsCall = async (initialize, success, failure, id) => {
     const result = await axios
       .get(`http://localhost:3001/api/v1/apps/${id}`, { withCredentials: true });
     if (result.data.status === 200) {
-      // console.log('From ApiCall', result.data.applicants);
       success(result.data.applicants);
-      // setTimeout(() => {
-      //   // history.push(`/job_apps/${id}`);
-      // }, 5000);
     } else {
       failure(result.data.message);
-      // setTimeout(() => {
-      //   history.push(`/job_apps/${id}`);
-      // }, 5000);
     }
   } catch (error) {
     failure(error);
-    // history.push(`/job_apps/${id}`);
   }
 };
 

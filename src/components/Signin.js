@@ -23,7 +23,6 @@ const Signin = ({
   const handleChange = ({ target: { name, value } }) => {
     setState({ ...state, [name]: value });
   };
-
   const resetState = () => {
     setState({
       email: '',
@@ -31,17 +30,10 @@ const Signin = ({
     });
     history.push('/');
   };
-
-  // const clearError = (errs) => {
-  //   errs.shift();
-  //   signinfailure(errs);
-  // };
-
   const handleErrors = (errors) => {
     <ul>
       {errors.map((error) => <li key={error} className="error">{error}</li>)}
     </ul>;
-    // setTimeout((errors) => clearError(errors), 5000);
   };
 
   const handleSubmit = (event) => {

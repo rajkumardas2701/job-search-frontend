@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-// import { useHistory } from 'react-router-dom';
 import { CircleToBlockLoading } from 'react-loadingg';
-// import Job from '../components/Job';
 import { fetchJobsInit, fetchJobsSuccess, fetchJobsFailure }
   from '../actions/index';
 import { jobsCall } from '../utils/apiCalls';
@@ -17,7 +15,6 @@ const Jobs = ({
   const [currentUser, setCurrentUser] = useState({ user });
   const [loginState, setLoginState] = useState(isLoggedIn);
   useEffect(() => {
-    // jobsCall(fetchInit, fetchSuccess, fetchFail);
     setCurrentUser(currentUser);
     jobsCall(fetchInit, fetchSuccess, fetchFail);
   }, [currentUser]);

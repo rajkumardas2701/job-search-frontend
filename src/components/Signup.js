@@ -39,17 +39,10 @@ const Signup = ({
     });
     history.push('/');
   };
-
-  // const clearError = (errs) => {
-  //   errs.shift();
-  //   signupfailure(errs);
-  // };
-
   const handleErrors = (errors) => {
     <ul>
       {errors.map((error) => <li key={error} className="error">{error}</li>)}
     </ul>;
-    // setTimeout((errors) => clearError(errors), 5000);
   };
 
   const handleSubmit = (event) => {
