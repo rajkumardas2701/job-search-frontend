@@ -1,26 +1,43 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import '../styles/Job.css';
 
 const Job = ({ job, user, isLoggedIn }) => {
   const [loginState, setLoginState] = useState(isLoggedIn);
   useEffect(() => { setLoginState(isLoggedIn); }, [isLoggedIn]);
 
   return (
-    <>
-      {/* {console.log(user)}
-      {console.log('login state passed', loginState)} */}
-      <ul>
-        <li>{job.location}</li>
-        <li>{job.salary}</li>
-        <li>{job.role}</li>
-        <li>{job.skills}</li>
-        {
-        (user.user.user_type === 'Candidate')
-          ? (
-            <div>
-              { (user && loginState && job) ? (
-                <Link to={{
+    <div className="job-section">
+      <div className="job-details">
+        <p className="job-label">
+          Role:
+        </p>
+        <p className="job-value">{job.role}</p>
+      </div>
+      <div className="job-details">
+        <p className="job-label">Location:</p>
+        <p className="job-value">{job.location}</p>
+      </div>
+      <div className="job-details">
+        <p className="job-label">Max. salary:</p>
+        <p className="job-value">
+          {job.salary}
+          {' '}
+          Lacs/Annum
+        </p>
+      </div>
+      <div className="job-details">
+        <p className="job-label">Skills required:</p>
+        <p className="job-value">{job.skills}</p>
+      </div>
+      {
+      (user.user.user_type === 'Candidate')
+        ? (
+          <div className="job-btn">
+            { (user && loginState && job) ? (
+              <Link
+                to={{
                   pathname: `/job_details/${job.id}`,
                   state: {
                     user: user.user,
@@ -28,35 +45,35 @@ const Job = ({ job, user, isLoggedIn }) => {
                     job,
                   },
                 }}
-                >
-                  View and Apply
-                </Link>
-              ) : (<div>Still loading</div>) }
+                className="link-style"
+              >
+                View and Apply
+              </Link>
+            ) : (<div>Still loading</div>) }
 
-            </div>
-          )
-          : (
-            <div>
-              {
-              (user && loginState && job) ? (
-                <Link to={{
-                  pathname: `/job_apps/${job.id}`,
-                  state: {
-                    user: user.user,
-                    loginState,
-                    job,
-                  },
-                }}
-                >
-                  Check Applicants
-                </Link>
-              ) : (<div>Still loading</div>)
-            }
-            </div>
-          )
-        }
-      </ul>
-    </>
+          </div>
+        )
+        : (
+          <div>
+            {
+            (user && loginState && job) ? (
+              <Link to={{
+                pathname: `/job_apps/${job.id}`,
+                state: {
+                  user: user.user,
+                  loginState,
+                  job,
+                },
+              }}
+              >
+                Check Applicants
+              </Link>
+            ) : (<div>Still loading</div>)
+          }
+          </div>
+        )
+      }
+    </div>
   );
 };
 

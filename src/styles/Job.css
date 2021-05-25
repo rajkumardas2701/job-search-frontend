@@ -1,0 +1,38 @@
+.job-section {
+  width: 70%;
+  margin: 50px auto;
+  padding: 20px;
+  border: 2px solid white;
+  border-radius: 10px;
+  height: 300px;
+  background: white;
+}
+
+.job-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.job-label {
+  font-size: large;
+  font-weight: 700;
+}
+
+.job-value {
+  color: blue;
+  font-weight: 500;
+}
+
+.job-btn {
+  border: 1px solid black;
+  margin-top: 5px;
+  height: 30px;
+  background: rgb(9, 219, 9);
+  border-radius: 5px;
+  padding-top: 4px;
+}
+
+.job-btn > a {
+  text-decoration: none;
+}

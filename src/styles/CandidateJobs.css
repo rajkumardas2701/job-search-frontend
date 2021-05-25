@@ -1,7 +1,33 @@
 .view {
-  margin: 70px 140px;
+  margin: 50px 70px 40px 70px;
+  text-align: center;
+  color: azure;
 }
 
-.jobs-container {
+.carousel-container {
+  height: 60vh;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.candidate-jobs-container {
+  height: 80vh;
   margin-top: 100px;
+}
+
+.carousel-container > div > ul {
+  display: flex;
+  flex-direction: row;
+  height: -90px;
+  justify-content: center;
+}
+
+.carousel-container > div {
+  height: 60vh;
+}
+
+.carousel-container > div > p {
+  font-size: medium !important;
 }

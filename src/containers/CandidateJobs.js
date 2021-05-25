@@ -1,12 +1,9 @@
 import PropTypes from 'prop-types';
-// import { connect } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-// import { useHistory } from 'react-router-dom';
-// import { CircleToBlockLoading } from 'react-loadingg';
+import { Carousel } from 'react-responsive-carousel';
 import Job from '../components/Job';
-// import { fetchJobsInit, fetchJobsSuccess, fetchJobsFailure } from '../actions/index';
-// import { jobsCall } from '../utils/apiCalls';
 import '../styles/CandidateJobs.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const CandidateJobs = ({ jobs, user, isLoggedIn }) => {
   const [loginState, setLoginState] = useState(isLoggedIn);
@@ -14,24 +11,30 @@ const CandidateJobs = ({ jobs, user, isLoggedIn }) => {
   useEffect(() => { setLoginState(isLoggedIn); }, [isLoggedIn]);
 
   return (
-    <div>
-      <h3 className="view">Candidate&apos;s View</h3>
-      {/* {isError && <div>Couldn&apos;t fetch the data now, please try again later</div>} */}
+    <div className="candidate-jobs-container">
       <div className="jobs-container">
         {
           (jobs && jobs.length)
-            ? (jobs.map((job) => (
-              <Job
-                job={job}
-                key={job.id}
-                user={user}
-                isLoggedIn={loginState}
-              />
-            )))
+            ? (
+              <Carousel showThumbs={false} className="carousel-container">
+                {
+                jobs.map((job) => (
+                  <Job
+                    job={job}
+                    key={job.id}
+                    user={user}
+                    isLoggedIn={loginState}
+                  />
+                ))
+               }
+              </Carousel>
+            )
+
             : (<div>No jobs to apply. You will see them when a recuiter post them</div>)
         }
-      </div>
 
+      </div>
+      <p className="view">Apply for a role and keep a tab of your emails to see responses from recruiters</p>
     </div>
   );
 };
