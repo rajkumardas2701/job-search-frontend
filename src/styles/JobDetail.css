@@ -1,0 +1,47 @@
+.no-jobs-msg {
+  border: 1px solid black;
+  width: 70%;
+  margin: 300px auto 250px auto;
+  text-align: center;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.job-section-1 {
+  width: 70%;
+  margin: 200px auto;
+  padding: 20px;
+  border: 2px solid white;
+  border-radius: 10px;
+  height: 300px;
+  background: white;
+}
+
+.job-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.job-label {
+  font-size: large;
+  font-weight: 700;
+}
+
+.job-value {
+  color: blue;
+  font-weight: 500;
+}
+
+.job-apply-btn {
+  width: 100%;
+  height: 40px;
+  margin-top: 10px;
+  color: blue;
+  background: rgb(9, 219, 9);
+  font-weight: 400;
+  font-size: large;
+  border-radius: 7px;
+}

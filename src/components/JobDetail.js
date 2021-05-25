@@ -1,16 +1,13 @@
 import React from 'react';
-// , { useEffect }
-// { useState, useEffect }
 import { useHistory, useLocation } from 'react-router';
-// , useParams
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CircleToBlockLoading } from 'react-loadingg';
 import NavBar from '../layouts/Navbar';
 import Footer from '../layouts/Footer';
-// import Home from '../layouts/Home';
 import { applyJob } from '../utils/apiCalls';
 import { applyJobInit, applyJobSuccess, applyJobFailure } from '../actions/index';
+import '../styles/JobDetail.css';
 
 const JobDetail = ({
   applyInit, applySuccess, applyFail, isLoading, isError, jobRes,
@@ -18,11 +15,6 @@ const JobDetail = ({
   const history = useHistory();
   const location = useLocation();
   const { user, loginState, job } = location.state;
-  // const { id } = useParams();
-  // useEffect(() => {
-  //   jobCall(fetchInit, fetchSuccess, fetchFail, id);
-  // }, []);
-
   const handleClick = () => {
     const data = {
       user_id: user.id,
@@ -38,20 +30,46 @@ const JobDetail = ({
         user={user}
       />
       {isError && (
-      <div>
+      <div className="no-jobs-msg">
         Couldn&apos;t apply for
         {job.role}
         {' '}
         job
       </div>
       )}
-      <ul>
-        <li>{job.location}</li>
-        <li>{job.salary}</li>
-        <li>{job.role}</li>
-        <li>{job.skills}</li>
-        <button type="button" onClick={handleClick}>Apply for Job</button>
-      </ul>
+      <div className="job-section-1">
+        <div className="job-details">
+          <p className="job-label">
+            Role:
+          </p>
+          <p className="job-value">{job.role}</p>
+        </div>
+        <div className="job-details">
+          <p className="job-label">Location:</p>
+          <p className="job-value">{job.location}</p>
+        </div>
+        <div className="job-details">
+          <p className="job-label">Max. salary:</p>
+          <p className="job-value">
+            ₹
+            {' '}
+            {job.salary}
+            {' '}
+            L/A
+          </p>
+        </div>
+        <div className="job-details">
+          <p className="job-label">Skills required:</p>
+          <p className="job-value">{job.skills}</p>
+        </div>
+        <button
+          type="button"
+          onClick={handleClick}
+          className="job-apply-btn"
+        >
+          Apply for this Job
+        </button>
+      </div>
       {
         isLoading ? (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
           : (
