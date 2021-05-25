@@ -8,6 +8,7 @@ import NavBar from '../layouts/Navbar';
 import { fetchAppsCall } from '../utils/apiCalls';
 import Applicant from '../components/Applicant';
 import { fetchAppsInit, fetchAppsSuccess, fetchAppsFailure } from '../actions/index';
+import '../styles/JobApplicants.css';
 
 const JobApplicants = ({
   appsInit, appsSuccess, appsFail, isLoading, isError, apps,
@@ -31,14 +32,40 @@ const JobApplicants = ({
         isLoggedIn={loginState}
         user={user}
       />
-      {isError && <div>We have encountered error</div>}
-      <ul>
-        <li>{job.location}</li>
-        <li>{job.salary}</li>
-        <li>{job.role}</li>
-        <li>{job.skills}</li>
-        <button type="button" onClick={handleClick}>Check Recently Added</button>
-      </ul>
+      {isError && <div className="no-jobs-msg">We have encountered error</div>}
+      <div className="job-section-2">
+        <div className="job-details">
+          <p className="job-label">
+            Role:
+          </p>
+          <p className="job-value">{job.role}</p>
+        </div>
+        <div className="job-details">
+          <p className="job-label">Location:</p>
+          <p className="job-value">{job.location}</p>
+        </div>
+        <div className="job-details">
+          <p className="job-label">Max. salary:</p>
+          <p className="job-value">
+            ₹
+            {' '}
+            {job.salary}
+            {' '}
+            L/A
+          </p>
+        </div>
+        <div className="job-details">
+          <p className="job-label">Skills required:</p>
+          <p className="job-value">{job.skills}</p>
+        </div>
+        <button
+          type="button"
+          onClick={handleClick}
+          className="job-apply-btn"
+        >
+          check current list
+        </button>
+      </div>
       {isLoading ? (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
         : (
           <div>
@@ -49,9 +76,9 @@ const JobApplicants = ({
                 job={job}
               />
             ))) : (
-              <div>
-                There is no Application for this role.
-                Click on Recently applied above to fetch the new list, if any.
+              <div className="no-jobs-msg">
+                There is no application for this role.
+                Click on Recently added to fetch the new list, if any.
               </div>
             )}
           </div>
