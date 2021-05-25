@@ -1,4 +1,5 @@
-import '../styles/Signup.css';
+// import '../styles/Signup.css';
+import '../styles/AddJob.css';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -58,7 +59,7 @@ const AddJob = ({
 
   return (
     <>
-      <div className="signup-container">
+      <div className="signup-container-2">
         <h2 className="form-head">Add a new Job</h2>
         <form onSubmit={handleSubmit} className="signup-form-container">
           <div className="input-section">

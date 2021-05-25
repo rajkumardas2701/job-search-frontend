@@ -47,14 +47,10 @@ const applyJob = async (initialize, success, failure, app, history) => {
     const result = await axios.post('http://localhost:3001/api/v1/apps', { app }, { withCredentials: true });
     if (result.data.status === 200) {
       success(result.data.message);
-      setTimeout(() => {
-        history.push('/');
-      }, 5000);
+      history.push('/');
     } else {
       failure(result.data.message);
-      setTimeout(() => {
-        history.push('/');
-      }, 5000);
+      history.push('/');
     }
   } catch (error) {
     failure(error);
