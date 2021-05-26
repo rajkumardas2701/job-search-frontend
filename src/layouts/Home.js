@@ -8,13 +8,18 @@ const Home = () => (
   <>
     <NavBar />
     <div className="homeContainer">
-      <h2>Hire or Get Hired</h2>
-      <h3>at</h3>
-      <h1>JobHub</h1>
+      <h2 className="hire-text">
+        Hire or Get Hired
+        <br />
+        <br />
+        <br />
+        @
+      </h2>
+      <h1 className="main-content">JobHub</h1>
       <div className="homeButtonSection">
-        <Link to="/signin">Sign In</Link>
-        <p>Or</p>
-        <Link to="/signup">Sign Up</Link>
+        <Link to="/signin" className="home-btn">Sign In</Link>
+        <p className="text-or">OR</p>
+        <Link to="/signup" className="home-btn">Sign Up</Link>
       </div>
     </div>
     <Footer />

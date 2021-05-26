@@ -1,7 +1,7 @@
 .homeContainer {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 50%;
   margin: 20vh auto;
   align-items: center;
 }
@@ -12,4 +12,34 @@
   width: 100%;
   justify-content: space-between;
   margin-top: 50px;
+  align-content: center;
+}
+
+.home-btn {
+  border: 2px solid white;
+  padding: 15px;
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  border-radius: 7px;
+  font-weight: 600;
+  margin-top: 50px;
+}
+
+.text-or {
+  margin-top: 65px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 600;
+  color: azure;
+}
+
+.hire-text {
+  color: aliceblue;
+  text-align: center;
+}
+
+.main-content {
+  margin-top: 40px;
+  color: blue;
+  text-decoration: underline;
 }
