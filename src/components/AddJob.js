@@ -1,7 +1,6 @@
 import '../styles/AddJob.css';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-// import axios from 'axios';
 import { postJob } from '../utils/apiCalls';
 
 const AddJob = ({

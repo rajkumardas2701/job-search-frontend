@@ -127,6 +127,17 @@ const isLoggedIn = (setLoggedIn, loggedIn, history) => {
     .catch((error) => error);
 };
 
+const logoutCall = (userState, loginState, handleSignOut) => {
+  axios.delete(`http://localhost:3001/api/v1/sessions/${userState.id}`, { withCredentials: true })
+    .then(() => {
+      handleSignOut({
+        logged_in: false,
+        user: {},
+      });
+    })
+    .catch((error) => error);
+};
+
 export {
-  authCall, jobsCall, applyJob, fetchAppsCall, deleteAppsCall, postJob, isLoggedIn,
+  authCall, jobsCall, applyJob, fetchAppsCall, deleteAppsCall, postJob, isLoggedIn, logoutCall,
 };

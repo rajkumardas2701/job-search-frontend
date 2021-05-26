@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import '../styles/NavBar.css';
+import { logoutCall } from '../utils/apiCalls';
 
 const NavBar = ({ isLoggedIn, user, handleSignOut }) => {
   const history = useHistory();
@@ -15,14 +15,7 @@ const NavBar = ({ isLoggedIn, user, handleSignOut }) => {
 
   const handlelogout = (event) => {
     event.preventDefault();
-    axios.delete(`http://localhost:3001/api/v1/sessions/${userState.id}`, { withCredentials: true })
-      .then(() => {
-        handleSignOut({
-          logged_in: false,
-          user: {},
-        });
-      })
-      .catch((error) => error);
+    logoutCall(userState, loginState, handleSignOut);
     history.push('/signin');
   };
 
