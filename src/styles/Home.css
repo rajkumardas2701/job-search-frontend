@@ -1,8 +1,8 @@
 .homeContainer {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  margin: 20vh auto;
+  width: 70%;
+  margin: 10vh auto;
   align-items: center;
 }
 
@@ -11,7 +11,7 @@
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
-  margin-top: 50px;
+  margin-top: 10px;
   align-content: center;
 }
 
@@ -39,7 +39,7 @@
 }
 
 .main-content {
-  margin-top: 40px;
+  margin-top: 20px;
   color: blue;
   text-decoration: underline;
 }
