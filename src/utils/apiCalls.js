@@ -41,7 +41,6 @@ const jobsCall = async (initialize, success, failure) => {
 };
 
 const applyJob = async (initialize, success, failure, app, history) => {
-  // console.log(app);
   initialize();
   try {
     const result = await axios.post('http://localhost:3001/api/v1/apps', { app }, { withCredentials: true });
@@ -88,6 +87,26 @@ const deleteAppsCall = async (initialize, failure, id, history) => {
   }
 };
 
+const postJob = (postInit, postSuccess, postFailure, jobsCall,
+  fetchInit,
+  fetchSuccess,
+  fetchFail, job) => {
+  postInit(true);
+  axios
+    .post('http://localhost:3001/api/v1/jobs', { job }, { withCredentials: true })
+    .then((response) => {
+      if (response.data.status === 'created') {
+        postSuccess(response.data.job);
+        jobsCall(fetchInit, fetchSuccess, fetchFail);
+      } else {
+        postFailure(response.data.errors);
+      }
+    })
+    .catch((error) => {
+      postFailure(error);
+    });
+};
+
 export {
-  authCall, jobsCall, applyJob, fetchAppsCall, deleteAppsCall,
+  authCall, jobsCall, applyJob, fetchAppsCall, deleteAppsCall, postJob,
 };

@@ -1,7 +1,8 @@
 import '../styles/AddJob.css';
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+// import axios from 'axios';
+import { postJob } from '../utils/apiCalls';
 
 const AddJob = ({
   handleForm, postInit, postSuccess, postFailure, jobsCall,
@@ -39,20 +40,10 @@ const AddJob = ({
     const job = {
       role, location, salary, skills,
     };
-    postInit(true);
-    axios
-      .post('http://localhost:3001/api/v1/jobs', { job }, { withCredentials: true })
-      .then((response) => {
-        if (response.data.status === 'created') {
-          postSuccess(response.data.job);
-          jobsCall(fetchInit, fetchSuccess, fetchFail);
-        } else {
-          postFailure(response.data.errors);
-        }
-      })
-      .catch((error) => {
-        postFailure(error);
-      });
+    postJob(postInit, postSuccess, postFailure, jobsCall,
+      fetchInit,
+      fetchSuccess,
+      fetchFail, job);
     handleForm(!!showForm);
   };
 
