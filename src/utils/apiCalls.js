@@ -107,6 +107,26 @@ const postJob = (postInit, postSuccess, postFailure, jobsCall,
     });
 };
 
+const isLoggedIn = (setLoggedIn, loggedIn, history) => {
+  axios
+    .get('http://localhost:3001/api/v1/logged_in', { withCredentials: true })
+    .then((response) => {
+      if (response.data.logged_in && !loggedIn.logged_in) {
+        setLoggedIn({
+          logged_in: true,
+          user: response.data.user,
+        });
+      } else if (!response.data.logged_in && loggedIn.logged_in) {
+        setLoggedIn({
+          logged_in: false,
+          user: {},
+        });
+        history.push('/home');
+      }
+    })
+    .catch((error) => error);
+};
+
 export {
-  authCall, jobsCall, applyJob, fetchAppsCall, deleteAppsCall, postJob,
+  authCall, jobsCall, applyJob, fetchAppsCall, deleteAppsCall, postJob, isLoggedIn,
 };

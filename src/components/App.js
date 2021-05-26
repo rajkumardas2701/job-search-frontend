@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import Footer from '../layouts/Footer';
 import NavBar from '../layouts/Navbar';
 import Home from '../layouts/Home';
 import Jobs from '../containers/Jobs';
+import { isLoggedIn } from '../utils/apiCalls';
 
 const App = () => {
   const history = useHistory();
@@ -12,29 +13,13 @@ const App = () => {
     logged_in: false,
     user: {},
   });
-  const isLoggedIn = () => {
-    axios
-      .get('http://localhost:3001/api/v1/logged_in', { withCredentials: true })
-      .then((response) => {
-        if (response.data.logged_in && !loggedIn.logged_in) {
-          setLoggedIn({
-            logged_in: true,
-            user: response.data.user,
-          });
-        } else if (!response.data.logged_in && loggedIn.logged_in) {
-          setLoggedIn({
-            logged_in: false,
-            user: {},
-          });
-          history.push('/home');
-        }
-      })
-      .catch((error) => error);
-  };
-
   useEffect(() => {
-    isLoggedIn();
-  }, [loggedIn]);
+    const loggedIn = {
+      logged_in: false,
+      user: {},
+    };
+    isLoggedIn(setLoggedIn, loggedIn, history);
+  }, []);
 
   return (
     <div className="App">
