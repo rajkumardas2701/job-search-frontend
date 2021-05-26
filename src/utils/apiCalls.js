@@ -1,4 +1,5 @@
 import axios from 'axios';
+import baseURL from '../constants/apis';
 
 const authCall = (authType, user, initialize, success, failure, history) => {
   let query;
@@ -10,7 +11,7 @@ const authCall = (authType, user, initialize, success, failure, history) => {
     query = 'logout';
   }
   initialize();
-  axios.post(`http://localhost:3001/api/v1/${query}`, { user }, { withCredentials: true })
+  axios.post(`${baseURL}/api/v1/${query}`, { user }, { withCredentials: true })
     .then((response) => {
       if ((response.data.status === 'created') || (response.data.logged_in)) {
         success();
