@@ -12,7 +12,6 @@ const Home = () => (
         Hire or Get Hired
         <br />
         <br />
-        <br />
         @
       </h2>
       <h1 className="main-content">JobHub</h1>
