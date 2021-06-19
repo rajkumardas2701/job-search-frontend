@@ -26,11 +26,11 @@ const Job = ({ job, user, isLoggedIn }) => {
           {' '}
           {job.salary}
           {' '}
-          L/A
+          Lacs/A
         </p>
       </div>
       <div className="job-details">
-        <p className="job-label">Skills required:</p>
+        <p className="job-label">Skills:</p>
         <p className="job-value">{job.skills}</p>
       </div>
       {

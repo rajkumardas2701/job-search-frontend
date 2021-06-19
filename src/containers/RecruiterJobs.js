@@ -1,5 +1,4 @@
 import '../styles/RecruiterJobs.css';
-// import '../styles/CandidateJobs.css';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';

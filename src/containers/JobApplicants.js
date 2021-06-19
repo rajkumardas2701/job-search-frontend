@@ -64,7 +64,7 @@ const JobApplicants = ({
           </p>
         </div>
         <div className="job-details">
-          <p className="job-label">Skills required:</p>
+          <p className="job-label">Skills:</p>
           <p className="job-value">{job.skills}</p>
         </div>
         <div className="job-btns">
@@ -80,13 +80,13 @@ const JobApplicants = ({
             onClick={handleDelete}
             className="job-delete-btn"
           >
-            Delete this Job
+            Delete Job
           </button>
         </div>
       </div>
       {isLoading ? (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
         : (
-          <div>
+          <div className="applicants-list">
             { (apps && apps.length)
               ? (
                 <Carousel showThumbs={false} className="carousel-container-applicant">
