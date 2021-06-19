@@ -55,7 +55,7 @@ const JobDetail = ({
             {' '}
             {job.salary}
             {' '}
-            L/A
+            Lacs/A
           </p>
         </div>
         <div className="job-details">

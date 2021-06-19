@@ -41,49 +41,52 @@ const JobApplicants = ({
         isLoggedIn={loginState}
         user={user}
       />
-      {isError && <div className="no-jobs-msg">We have encountered error</div>}
-      <div className="job-section-2">
-        <div className="job-details">
-          <p className="job-label">
-            Role:
-          </p>
-          <p className="job-value">{job.role}</p>
-        </div>
-        <div className="job-details">
-          <p className="job-label">Location:</p>
-          <p className="job-value">{job.location}</p>
-        </div>
-        <div className="job-details">
-          <p className="job-label">Max. salary:</p>
-          <p className="job-value">
-            ₹
-            {' '}
-            {job.salary}
-            {' '}
-            L/A
-          </p>
-        </div>
-        <div className="job-details">
-          <p className="job-label">Skills:</p>
-          <p className="job-value">{job.skills}</p>
-        </div>
-        <div className="job-btns">
-          <button
-            type="button"
-            onClick={handleClick}
-            className="job-apply-btn"
-          >
-            Refresh list
-          </button>
-          <button
-            type="button"
-            onClick={handleDelete}
-            className="job-delete-btn"
-          >
-            Delete Job
-          </button>
-        </div>
-      </div>
+      {isError
+        ? (<div className="no-jobs-msg">We have encountered error</div>)
+        : (
+          <div className="job-section-2">
+            <div className="job-details">
+              <p className="job-label">
+                Role:
+              </p>
+              <p className="job-value">{job.role}</p>
+            </div>
+            <div className="job-details">
+              <p className="job-label">Location:</p>
+              <p className="job-value">{job.location}</p>
+            </div>
+            <div className="job-details">
+              <p className="job-label">Max. salary:</p>
+              <p className="job-value">
+                ₹
+                {' '}
+                {job.salary}
+                {' '}
+                Lacs/A
+              </p>
+            </div>
+            <div className="job-details">
+              <p className="job-label">Skills:</p>
+              <p className="job-value">{job.skills}</p>
+            </div>
+            <div className="job-btns">
+              <button
+                type="button"
+                onClick={handleClick}
+                className="job-refresh-btn"
+              >
+                Refresh list
+              </button>
+              <button
+                type="button"
+                onClick={handleDelete}
+                className="job-delete-btn"
+              >
+                Delete Job
+              </button>
+            </div>
+          </div>
+        )}
       {isLoading ? (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
         : (
           <div className="applicants-list">

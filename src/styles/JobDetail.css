@@ -11,12 +11,16 @@
 
 .job-section-1 {
   width: 70%;
-  margin: 200px auto;
+  margin: 150px auto 100px auto;
   padding: 20px;
   border: 2px solid white;
   border-radius: 10px;
-  height: 300px;
+  height: 220px;
   background: white;
+}
+
+.job-section-1 > .job-details > p {
+  margin-top: 0px;
 }
 
 .job-details {

@@ -12,7 +12,7 @@ const CandidateJobs = ({ jobs, user, isLoggedIn }) => {
 
   return (
     <div className="candidate-jobs-container">
-      <div className="jobs-container">
+      <div className="jobs-container-candidate">
         {
           (jobs && jobs.length)
             ? (

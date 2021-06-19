@@ -1,7 +1,8 @@
 .view {
-  margin: 50px 70px 40px 70px;
+  margin: 20px auto;
   text-align: center;
   color: azure;
+  width: 80%;
 }
 
 .carousel-container {
@@ -41,4 +42,20 @@
   background: white;
   border-radius: 8px;
   font-weight: 500;
+}
+
+/* .jobs-container-candidate {
+  height: 350px;
+} */
+/* 
+.carousel-container > div {
+  height: 61vh;
+} */
+
+.carousel-slider {
+  height: 250px;
+}
+
+.carousel-container > div > .control-dots {
+  bottom: -10px !important;
 }
