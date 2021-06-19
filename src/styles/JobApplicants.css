@@ -1,7 +1,7 @@
-.no-jobs-msg {
+.no-jobs-msg-applicant-list {
   border: 1px solid black;
   width: 70%;
-  margin: 300px auto 250px auto;
+  margin: 40px auto 40px auto;
   text-align: center;
   padding: 10px;
   background: white;
@@ -20,8 +20,8 @@
 }
 
 .applicants-list {
-  height: 250px;
-  margin-top: 30px;
+  height: 240px;
+  margin-top: 20px;
 }
 
 .job-section-2 > .job-details > p {
@@ -90,3 +90,7 @@
 .carousel-container-applicant > div > p {
   font-size: medium !important;
 }
+/* 
+.no-jobs-msg-applicant-list {
+
+} */

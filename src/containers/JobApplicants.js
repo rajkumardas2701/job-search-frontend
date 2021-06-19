@@ -101,9 +101,9 @@ const JobApplicants = ({
             }
                 </Carousel>
               ) : (
-                <div className="no-jobs-msg">
+                <div className="no-jobs-msg-applicant-list">
                   There is no application for this role.
-                  Click on Recently added to fetch the new list, if any.
+                  Click on Refresh list to check for an update, if any.
                 </div>
               )}
           </div>
