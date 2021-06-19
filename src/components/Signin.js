@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/Signup.css';
+import '../styles/Signin.css';
 import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -48,7 +48,7 @@ const Signin = ({
   return (
     <>
       <NavBar />
-      <div className="signup-container">
+      <div className="signin-container">
         <h2 className="form-head">Login to JobHub</h2>
         <form onSubmit={handleSubmit} className="signup-form-container">
           <div className="input-section">

@@ -26,10 +26,10 @@
   font-size: medium !important;
 }
 
-.no-jobs-msg {
+.no-jobs-msg-recruiter {
   border: 1px solid black;
   width: 70%;
-  margin: 300px auto 250px auto;
+  margin: 250px auto 150px auto;
   text-align: center;
   padding: 10px;
   background: white;
@@ -41,6 +41,7 @@
   height: 60vh;
 }
 
+/*
 .jobs-container-recruiter {
-  height: 400px;
-}
+  height: 200px;
+} */

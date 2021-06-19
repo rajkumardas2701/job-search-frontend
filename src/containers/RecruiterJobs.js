@@ -1,5 +1,5 @@
 import '../styles/RecruiterJobs.css';
-import '../styles/CandidateJobs.css';
+// import '../styles/CandidateJobs.css';
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -45,7 +45,15 @@ const RecruiterJobs = ({
           }
               </Carousel>
             )
-            : (<div className="no-jobs-msg">You didn&apos;t add any job yet. Click on Add Job to get started</div>)
+            : (
+              <div className="no-jobs-msg-recruiter">
+                You didn&apos;t add any job yet. Click on
+                {' '}
+                <b>Add Job</b>
+                {' '}
+                to get started
+              </div>
+            )
         }
       </div>
       {!showForm && (
