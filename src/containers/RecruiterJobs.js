@@ -3,13 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Carousel } from 'react-responsive-carousel';
+import { CircleToBlockLoading } from 'react-loadingg';
 import { postJobInit, postJobSuccess, postJobfailure } from '../actions/index';
 import AddJob from '../components/AddJob';
 import Job from '../components/Job';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 const RecruiterJobs = ({
-  postInit, postSuccess, postFailure, isLoading, errors, job, jobs, jobsCall,
+  postInit, postSuccess, postFailure, isLoading, errors, jobs, jobsCall,
   fetchInit,
   fetchSuccess,
   fetchFail,
@@ -76,9 +77,8 @@ const RecruiterJobs = ({
         fetchFail={fetchFail}
       />
       )}
-      {job.length > 0 && <div>Job has been added</div>}
       {errors && <div>{errors}</div>}
-      {isLoading && <div>Loading Job</div>}
+      {isLoading && <div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>}
 
     </div>
   );
@@ -91,7 +91,6 @@ RecruiterJobs.propTypes = {
   isLoading: PropTypes.bool,
   isLoggedIn: PropTypes.bool,
   errors: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-  job: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   jobs: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
   jobsCall: PropTypes.func,
   fetchInit: PropTypes.func,
@@ -103,7 +102,6 @@ RecruiterJobs.propTypes = {
 RecruiterJobs.defaultProps = {
   isLoading: false,
   errors: [],
-  job: [],
   jobs: [],
   isLoggedIn: false,
   jobsCall: () => {},
