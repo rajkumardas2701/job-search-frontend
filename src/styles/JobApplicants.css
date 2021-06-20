@@ -24,8 +24,12 @@
   margin-top: 20px;
 }
 
+.carousel-container-applicant > div > p {
+  font-size: medium !important;
+}
+
 .job-section-2 > .job-details > p {
-  margin: 0px;
+  margin: 0;
 }
 
 .job-details {
@@ -83,17 +87,8 @@
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   padding-top: -50px;
 }
-
-.carousel-container-applicant > div > p {
-  font-size: medium !important;
-}
-/* 
-.no-jobs-msg-applicant-list {
-
-} */
 
 button {
   cursor: pointer;
