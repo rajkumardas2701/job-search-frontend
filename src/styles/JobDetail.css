@@ -40,7 +40,7 @@
 }
 
 .job-apply-btn {
-  width: 100%;
+  width: 45%;
   height: 40px;
   margin-top: 10px;
   color: blue;
@@ -48,4 +48,10 @@
   font-weight: 400;
   font-size: large;
   border-radius: 7px;
+}
+
+.job-details-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

@@ -22,7 +22,9 @@ const JobDetail = ({
     };
     applyJob(applyInit, applySuccess, applyFail, data, history);
   };
-
+  const handleBack = () => {
+    history.push('/');
+  };
   return (
     <>
       <NavBar
@@ -62,13 +64,22 @@ const JobDetail = ({
           <p className="job-label">Skills:</p>
           <p className="job-value">{job.skills}</p>
         </div>
-        <button
-          type="button"
-          onClick={handleClick}
-          className="job-apply-btn"
-        >
-          Apply for this Job
-        </button>
+        <div className="job-details-btns">
+          <button
+            type="button"
+            onClick={handleClick}
+            className="job-apply-btn"
+          >
+            Apply
+          </button>
+          <button
+            type="button"
+            onClick={handleBack}
+            className="job-apply-btn"
+          >
+            Back
+          </button>
+        </div>
       </div>
       {
         isLoading ? (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)

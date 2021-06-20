@@ -31,6 +31,9 @@ const JobApplicants = ({
       deleteAppsCall(appsInit, appsFail, job.id, history);
     }
   };
+  const handleBack = () => {
+    history.push('/');
+  };
   useEffect(() => {
     fetchAppsCall(appsInit, appsSuccess, appsFail, job.id);
   }, []);
@@ -75,14 +78,21 @@ const JobApplicants = ({
                 onClick={handleClick}
                 className="job-refresh-btn"
               >
-                Refresh list
+                Refresh
               </button>
               <button
                 type="button"
                 onClick={handleDelete}
                 className="job-delete-btn"
               >
-                Delete Job
+                Delete
+              </button>
+              <button
+                type="button"
+                onClick={handleBack}
+                className="job-refresh-btn"
+              >
+                Back
               </button>
             </div>
           </div>
