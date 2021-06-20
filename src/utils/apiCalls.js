@@ -34,11 +34,9 @@ const jobsCall = async (initialize, success, failure) => {
     if (result.data.jobs) {
       success(result.data.jobs);
     } else {
-      // console.log('error from jobsCall error', result.data.errors);
       failure(result.data.errors);
     }
   } catch (error) {
-    // console.log('error from jobsCall catch', error);
     failure(error);
   }
 };

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../styles/Signin.css';
 import { Link, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import validator from 'email-validator';
 import { connect } from 'react-redux';
 import { CircleToBlockLoading } from 'react-loadingg';
 import { authCall } from '../utils/apiCalls';
@@ -30,19 +31,43 @@ const Signin = ({
     });
     history.push('/');
   };
-  const handleErrors = (errors) => {
-    <ul>
-      {errors.map((error) => <li key={error} className="error">{error}</li>)}
-    </ul>;
-  };
-
+  const handleErrors = (errors) => (
+    <>
+      {
+      errors.length > 0 && errors.map((error, idx) => <div key={`${error}-${idx + 1}`} className="signin-error">{error}</div>)
+      }
+    </>
+  );
   const handleSubmit = (event) => {
-    event.preventDefault();
-    const user = {
-      email,
-      password,
+    const fValid = document.getElementById('form-validation');
+    const shwError = document.createElement('div');
+    const errorEle = document.getElementById('server-error-section-signin');
+    setTimeout(() => {
+      if (errorEle.hasChildNodes()) {
+        errorEle.removeChild(errorEle.childNodes[0]);
+        errors.splice(0, errors.length);
+      }
+    }, 5000);
+    const addValidChild = () => {
+      shwError.classList.add('validationError');
+      fValid.appendChild(shwError);
+      setTimeout(() => {
+        if (fValid.hasChildNodes()) {
+          fValid.removeChild(fValid.childNodes[0]);
+        }
+      }, 5000);
     };
-    authCall('signin', user, signinInit, signinSuccess, signinFailure, history);
+    if (!validator.validate(state.email)) {
+      shwError.innerHTML = 'Invalid email format';
+      addValidChild();
+    } else {
+      const user = {
+        email,
+        password,
+      };
+      authCall('signin', user, signinInit, signinSuccess, signinFailure, history);
+    }
+    event.preventDefault();
   };
 
   return (
@@ -90,7 +115,8 @@ const Signin = ({
           </div>
         </form>
         {isLoading && <div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>}
-        <div className="server-error-section">{errors.length ? handleErrors(errors) : null}</div>
+        <div className="form-validation" id="form-validation" />
+        <div className="server-error-section-signin" id="server-error-section-signin">{errors.length ? handleErrors(errors) : null}</div>
       </div>
       <Footer />
     </>

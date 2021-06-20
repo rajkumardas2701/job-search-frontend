@@ -39,15 +39,22 @@ const Signup = ({
     });
     history.push('/');
   };
-  const handleErrors = (errors) => {
-    <ul>
-      {errors.map((error) => <li key={error} className="error">{error}</li>)}
-    </ul>;
-  };
+  const handleErrors = (errors) => (
+    <>
+      {errors.map((error, idx) => <div key={`${error}-${idx + 1}`} className="signin-error">{error}</div>)}
+    </>
+  );
 
   const handleSubmit = (event) => {
     const fValid = document.getElementById('form-validation');
     const shwError = document.createElement('div');
+    const errorEle = document.getElementById('server-error-section-signup');
+    setTimeout(() => {
+      if (errorEle.hasChildNodes()) {
+        errorEle.removeChild(errorEle.childNodes[0]);
+        errors.splice(0, errors.length);
+      }
+    }, 5000);
     const addValidChild = () => {
       shwError.classList.add('validationError');
       fValid.appendChild(shwError);
@@ -61,7 +68,7 @@ const Signup = ({
       shwError.innerHTML = 'Invalid email format';
       addValidChild();
     } else if (state.password !== state.password_confirmation) {
-      shwError.innerHTML = 'Password don\'t match!!';
+      shwError.innerHTML = 'Passwords don\'t match!!';
       addValidChild();
     } else {
       const user = {
@@ -150,7 +157,7 @@ const Signup = ({
         </form>
         {isLoading && <div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>}
         <div className="form-validation" id="form-validation" />
-        <div className="server-error-section">{errors.length ? handleErrors(errors) : null}</div>
+        <div className="server-error-section-signup" id="server-error-section-signup">{errors.length ? handleErrors(errors) : null}</div>
       </div>
       <Footer />
     </>
