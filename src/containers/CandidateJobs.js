@@ -29,7 +29,7 @@ const CandidateJobs = ({ jobs, user, isLoggedIn }) => {
                }
               </Carousel>
             )
-            : (<div className="no-jobs-msg">No jobs to apply. You will see them when recuiters post them here</div>)
+            : (<div className="no-jobs-msg-candidate">No jobs to apply. You will see them when recuiters post them here</div>)
         }
 
       </div>

@@ -22,32 +22,36 @@ const Jobs = ({
 
   return (
     <div>
-      {isError && <div>Couldn&apos;t fetch the data now, please try again later</div>}
-      { isLoading
-        ? (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
+      {isError
+        ? (<div>Couldn&apos;t fetch the data now, please try again later</div>)
         : (
-          <>
-            {(currentUser.user.user_type === 'Candidate')
-              ? (
-                <CandidateJobs
-                  jobs={jobs}
-                  user={currentUser}
-                  isLoggedIn={loginState}
-                />
-              )
+          <div>
+            { isLoading
+              ? (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
               : (
-                <RecruiterJobs
-                  jobs={jobs}
-                  jobsCall={jobsCall}
-                  fetchInit={fetchInit}
-                  fetchSuccess={fetchSuccess}
-                  fetchFail={fetchFail}
-                  user={currentUser}
-                  isLoggedIn={loginState}
-                />
+                <>
+                  {(currentUser.user.user_type === 'Candidate')
+                    ? (
+                      <CandidateJobs
+                        jobs={jobs}
+                        user={currentUser}
+                        isLoggedIn={loginState}
+                      />
+                    )
+                    : (
+                      <RecruiterJobs
+                        jobs={jobs}
+                        jobsCall={jobsCall}
+                        fetchInit={fetchInit}
+                        fetchSuccess={fetchSuccess}
+                        fetchFail={fetchFail}
+                        user={currentUser}
+                        isLoggedIn={loginState}
+                      />
+                    )}
+                </>
               )}
-          </>
-
+          </div>
         )}
     </div>
   );

@@ -33,25 +33,16 @@
   font-size: medium !important;
 }
 
-.no-jobs-msg {
+.no-jobs-msg-candidate {
   border: 1px solid black;
   width: 70%;
-  margin: 300px auto 250px auto;
+  margin: 250px auto 150px auto;
   text-align: center;
   padding: 10px;
   background: white;
   border-radius: 8px;
   font-weight: 500;
 }
-
-/* .jobs-container-candidate {
-  height: 350px;
-} */
-
-/*
-.carousel-container > div {
-  height: 61vh;
-} */
 
 .carousel-slider {
   height: 250px;
