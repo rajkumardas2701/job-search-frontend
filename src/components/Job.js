@@ -36,7 +36,7 @@ const Job = ({ job, user, isLoggedIn }) => {
       {
       (user.user.user_type === 'Candidate')
         ? (
-          <div className="job-btn">
+          <div className="job-btn" data-testid="text-link-test">
             { (user && loginState && job) ? (
               <Link
                 to={{
@@ -48,6 +48,7 @@ const Job = ({ job, user, isLoggedIn }) => {
                   },
                 }}
                 className="text-link"
+                data-testid="text-link-test"
               >
                 View and Apply
               </Link>
@@ -56,7 +57,7 @@ const Job = ({ job, user, isLoggedIn }) => {
           </div>
         )
         : (
-          <div className="job-btn">
+          <div className="job-btn" data-testid="text-link-test">
             {
             (user && loginState && job) ? (
               <Link
@@ -69,6 +70,7 @@ const Job = ({ job, user, isLoggedIn }) => {
                   },
                 }}
                 className="text-link"
+                data-testid="text-link-test"
               >
                 Check Applicants
               </Link>

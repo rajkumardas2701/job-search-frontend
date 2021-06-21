@@ -26,7 +26,7 @@ const JobDetail = ({
     history.push('/');
   };
   return (
-    <>
+    <div>
       <NavBar
         isLoggedIn={loginState}
         user={user}
@@ -88,7 +88,7 @@ const JobDetail = ({
           )
       }
       <Footer />
-    </>
+    </div>
   );
 };
 

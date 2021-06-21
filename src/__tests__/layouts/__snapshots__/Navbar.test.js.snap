@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Navbar component correctly 1`] = `
+<div>
+  <div
+    className="navbar"
+  >
+    <div
+      className="logo-section"
+    >
+      <a
+        className="logoAnc"
+        href="/"
+      >
+        <h1
+          className="logoHead"
+          data-testid="navbar-heading"
+        >
+          JobHub
+        </h1>
+      </a>
+    </div>
+    <div
+      className="nav-greet"
+    >
+      
+    </div>
+    <div
+      className="nav-btns"
+    >
+      <button
+        className="logout-btn"
+        onClick={[Function]}
+        type="button"
+      >
+        Login
+      </button>
+    </div>
+  </div>
+</div>
+`;

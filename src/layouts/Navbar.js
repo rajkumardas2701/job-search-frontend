@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../styles/NavBar.css';
 import { logoutCall } from '../utils/apiCalls';
@@ -56,17 +56,20 @@ const NavBar = ({ isLoggedIn, user, handleSignOut }) => {
     );
   };
   return (
-    <>
+    <div>
       <div className="navbar">
         <div className="logo-section">
-          <Link to="/" className="logoAnc">
+          {/* <Link to="/" className="logoAnc">
             <h1 className="logoHead" data-testid="navbar-heading">JobHub</h1>
-          </Link>
+          </Link> */}
+          <a href="/" className="logoAnc">
+            <h1 className="logoHead" data-testid="navbar-heading">JobHub</h1>
+          </a>
         </div>
         <div className="nav-greet">{showUser}</div>
         <div className="nav-btns">{btnfunc(loginState)}</div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -32,11 +32,11 @@ const Signin = ({
     history.push('/');
   };
   const handleErrors = (errors) => (
-    <>
+    <div>
       {
       errors.length > 0 && errors.map((error, idx) => <div key={`${error}-${idx + 1}`} className="signin-error">{error}</div>)
       }
-    </>
+    </div>
   );
   const handleSubmit = (event) => {
     const fValid = document.getElementById('form-validation');
@@ -71,7 +71,7 @@ const Signin = ({
   };
 
   return (
-    <>
+    <div>
       <NavBar />
       <div className="signin-container">
         <h2 className="form-head">Login to JobHub</h2>
@@ -119,7 +119,7 @@ const Signin = ({
         <div className="server-error-section-signin" id="server-error-section-signin">{errors.length ? handleErrors(errors) : null}</div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
