@@ -1,8 +1,8 @@
 import authReducer from '../../reducers/authReducer';
 import {
   authInit,
-  authSuccess, 
-  authSignupFailure, 
+  authSuccess,
+  authSignupFailure,
 } from '../../actions/index';
 
 describe('authreducer', () => {
