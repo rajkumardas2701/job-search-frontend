@@ -5,7 +5,7 @@ import Footer from './Footer';
 import '../styles/Home.css';
 
 const Home = () => (
-  <>
+  <div>
     <NavBar />
     <div className="homeContainer">
       <h2 className="hire-text">
@@ -22,7 +22,7 @@ const Home = () => (
       </div>
     </div>
     <Footer />
-  </>
+  </div>
 );
 
 export default Home;

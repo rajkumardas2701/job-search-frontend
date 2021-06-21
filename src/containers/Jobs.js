@@ -29,7 +29,7 @@ const Jobs = ({
             { isLoading
               ? (<div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>)
               : (
-                <>
+                <div>
                   {(currentUser.user.user_type === 'Candidate')
                     ? (
                       <CandidateJobs
@@ -49,7 +49,7 @@ const Jobs = ({
                         isLoggedIn={loginState}
                       />
                     )}
-                </>
+                </div>
               )}
           </div>
         )}

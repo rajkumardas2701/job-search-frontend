@@ -40,9 +40,9 @@ const Signup = ({
     history.push('/');
   };
   const handleErrors = (errors) => (
-    <>
+    <div>
       {errors.map((error, idx) => <div key={`${error}-${idx + 1}`} className="signin-error">{error}</div>)}
-    </>
+    </div>
   );
 
   const handleSubmit = (event) => {
@@ -86,7 +86,7 @@ const Signup = ({
   };
 
   return (
-    <>
+    <div>
       <NavBar />
       <div className="signup-container">
         <h2 className="form-head">Register to JobHub</h2>
@@ -160,7 +160,7 @@ const Signup = ({
         <div className="server-error-section-signup" id="server-error-section-signup">{errors.length ? handleErrors(errors) : null}</div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

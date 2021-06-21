@@ -39,7 +39,7 @@ const JobApplicants = ({
   }, []);
 
   return (
-    <>
+    <div>
       <NavBar
         isLoggedIn={loginState}
         user={user}
@@ -122,7 +122,7 @@ const JobApplicants = ({
           </div>
         )}
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -47,7 +47,7 @@ const AddJob = ({
   };
 
   return (
-    <>
+    <div>
       <div className="signup-container-2">
         <h2 className="form-head">Add a new Job</h2>
         <form onSubmit={handleSubmit} className="signup-form-container">
@@ -99,7 +99,7 @@ const AddJob = ({
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
