@@ -1,23 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
 import Footer from '../layouts/Footer';
 import NavBar from '../layouts/Navbar';
 import Home from '../layouts/Home';
 import Jobs from '../containers/Jobs';
-import { isLoggedIn } from '../utils/apiCalls';
 
 const App = () => {
-  const history = useHistory();
   const [loggedIn, setLoggedIn] = useState({
     logged_in: false,
     user: {},
   });
   useEffect(() => {
-    const loggedIn = {
-      logged_in: false,
-      user: {},
-    };
-    isLoggedIn(setLoggedIn, loggedIn, history);
+    const loggedIn = JSON.parse(localStorage.getItem('loggedInState'));
+    if (loggedIn === null) {
+      const temp = {
+        logged_in: false,
+        user: {},
+      };
+      setLoggedIn(temp);
+    } else {
+      setLoggedIn(loggedIn);
+    }
   }, []);
 
   return (

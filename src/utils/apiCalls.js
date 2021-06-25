@@ -13,11 +13,18 @@ const authCall = (authType, user, initialize, success, failure, history) => {
     .then((response) => {
       if ((response.data.status === 'created') || (response.data.logged_in)) {
         success();
-        history.push('/');
-      } else if (response.data.logged_out) {
+        localStorage.setItem('loggedInState', JSON.stringify({
+          logged_in: true,
+          user: response.data.user,
+        }));
         history.push('/');
       } else {
+        localStorage.setItem('loggedInState', JSON.stringify({
+          logged_in: false,
+          user: {},
+        }));
         failure(response.data.errors);
+        history.push('/home');
       }
     })
     .catch((error) => {
@@ -106,26 +113,6 @@ const postJob = (postInit, postSuccess, postFailure, jobsCall,
     });
 };
 
-const isLoggedIn = (setLoggedIn, loggedIn, history) => {
-  axios
-    .get('http://localhost:3001/api/v1/logged_in', { withCredentials: true })
-    .then((response) => {
-      if (response.data.logged_in && !loggedIn.logged_in) {
-        setLoggedIn({
-          logged_in: true,
-          user: response.data.user,
-        });
-      } else if (!response.data.logged_in && loggedIn.logged_in) {
-        setLoggedIn({
-          logged_in: false,
-          user: {},
-        });
-        history.push('/home');
-      }
-    })
-    .catch((error) => error);
-};
-
 const logoutCall = (userState, loginState, handleSignOut) => {
   axios.delete(`http://localhost:3001/api/v1/sessions/${userState.id}`, { withCredentials: true })
     .then(() => {
@@ -133,10 +120,14 @@ const logoutCall = (userState, loginState, handleSignOut) => {
         logged_in: false,
         user: {},
       });
+      localStorage.setItem('loggedInState', JSON.stringify({
+        logged_in: false,
+        user: {},
+      }));
     })
     .catch((error) => error);
 };
 
 export {
-  authCall, jobsCall, applyJob, fetchAppsCall, deleteAppsCall, postJob, isLoggedIn, logoutCall,
+  authCall, jobsCall, applyJob, fetchAppsCall, deleteAppsCall, postJob, logoutCall,
 };
