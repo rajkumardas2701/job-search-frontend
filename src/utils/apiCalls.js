@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import baseURL from '../constants/apis';
+import baseURL from '../constants/apis';
 
 const authCall = (authType, user, initialize, success, failure, history) => {
   let query;
@@ -9,7 +9,7 @@ const authCall = (authType, user, initialize, success, failure, history) => {
     query = 'sessions';
   }
   initialize();
-  axios.post(`http://localhost:3001/api/v1/${query}`, { user }, { withCredentials: true })
+  axios.post(`${baseURL}${query}`, { user }, { withCredentials: true })
     .then((response) => {
       if ((response.data.status === 'created') || (response.data.logged_in)) {
         success();
@@ -35,7 +35,7 @@ const authCall = (authType, user, initialize, success, failure, history) => {
 const jobsCall = async (initialize, success, failure) => {
   initialize();
   try {
-    const result = await axios.get('http://localhost:3001/api/v1/jobs', { withCredentials: true });
+    const result = await axios.get(`${baseURL}jobs`, { withCredentials: true });
     if (result.data.jobs) {
       success(result.data.jobs);
     } else {
@@ -49,7 +49,7 @@ const jobsCall = async (initialize, success, failure) => {
 const applyJob = async (initialize, success, failure, app, history) => {
   initialize();
   try {
-    const result = await axios.post('http://localhost:3001/api/v1/apps', { app }, { withCredentials: true });
+    const result = await axios.post(`${baseURL}apps`, { app }, { withCredentials: true });
     if (result.data.status === 200) {
       success(result.data.message);
       history.push('/');
@@ -67,7 +67,7 @@ const fetchAppsCall = async (initialize, success, failure, id) => {
   initialize();
   try {
     const result = await axios
-      .get(`http://localhost:3001/api/v1/apps/${id}`, { withCredentials: true });
+      .get(`${baseURL}${id}`, { withCredentials: true });
     if (result.data.status === 200) {
       success(result.data.applicants);
     } else {
@@ -82,7 +82,7 @@ const deleteAppsCall = async (initialize, failure, id, history) => {
   initialize();
   try {
     const result = await axios
-      .delete(`http://localhost:3001/api/v1/jobs/${id}`, { withCredentials: true });
+      .delete(`${baseURL}jobs/${id}`, { withCredentials: true });
     if (result.data.status === 200) {
       history.push('/');
     } else {
@@ -99,7 +99,7 @@ const postJob = (postInit, postSuccess, postFailure, jobsCall,
   fetchFail, job) => {
   postInit();
   axios
-    .post('http://localhost:3001/api/v1/jobs', { job }, { withCredentials: true })
+    .post(`${baseURL}jobs`, { job }, { withCredentials: true })
     .then((response) => {
       if (response.data.status === 'created') {
         postSuccess(response.data.job);
@@ -114,7 +114,7 @@ const postJob = (postInit, postSuccess, postFailure, jobsCall,
 };
 
 const logoutCall = (userState, loginState, handleSignOut) => {
-  axios.delete(`http://localhost:3001/api/v1/sessions/${userState.id}`, { withCredentials: true })
+  axios.delete(`${baseURL}sessions/${userState.id}`, { withCredentials: true })
     .then(() => {
       handleSignOut({
         logged_in: false,
