@@ -1,4 +1,4 @@
-export const AUTH_INIT = 'AUTH_INIT';
+export const INIT = 'INIT';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 export const AUTH_SIGNUP_FAIL = 'AUTH_SIGNUP_FAIL';
 export const AUTH_SIGNIN_FAIL = 'AUTH_SIGNIN_FAIL';
@@ -20,7 +20,7 @@ export const POST_JOBS_SUCCESS = 'POST_JOBS_SUCCESS';
 export const POST_JOBS_FAIL = 'POST_JOBS_FAIL';
 
 export const authInit = () => ({
-  type: AUTH_INIT,
+  type: INIT,
 });
 
 export const authSuccess = () => ({

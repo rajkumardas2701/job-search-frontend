@@ -15,28 +15,20 @@ const Signup = ({
   signupinit, signupsuccess, signupfailure, isLoading, errors,
 }) => {
   const history = useHistory();
-  const [state, setState] = useState({
-    firstname: '',
-    lastname: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
-    user_type: '',
-  });
-
-  const handleChange = ({ target: { name, value } }) => {
-    setState({ ...state, [name]: value });
-  };
+  const [firstname, setFirstname] = useState('');
+  const [lastname, setLastname] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordconfirmation, setPasswordconfirmation] = useState('');
+  const [usertype, setUsertype] = useState('');
 
   const resetState = () => {
-    setState({
-      firstname: '',
-      lastname: '',
-      email: '',
-      password: '',
-      password_confirmation: '',
-      user_type: userTypes,
-    });
+    setFirstname('');
+    setLastname('');
+    setEmail('');
+    setPassword('');
+    setPasswordconfirmation('');
+    setUsertype('');
     history.push('/');
   };
   const handleErrors = (errors) => (
@@ -64,20 +56,20 @@ const Signup = ({
         }
       }, 5000);
     };
-    if (!validator.validate(state.email)) {
+    if (!validator.validate(email)) {
       shwError.innerHTML = 'Invalid email format';
       addValidChild();
-    } else if (state.password !== state.password_confirmation) {
+    } else if (password !== passwordconfirmation) {
       shwError.innerHTML = 'Passwords don\'t match!!';
       addValidChild();
     } else {
       const user = {
-        firstname: state.firstname,
-        lastname: state.lastname,
-        email: state.email,
-        password: state.password,
-        password_confirmation: state.password_confirmation,
-        user_type: state.user_type,
+        firstname,
+        lastname,
+        email,
+        password,
+        password_confirmation: passwordconfirmation,
+        user_type: usertype,
       };
       if (user.user_type === '') { user.user_type = 'Candidate'; }
       authCall('signup', user, signupinit, signupsuccess, signupfailure, history);
@@ -97,8 +89,8 @@ const Signup = ({
               placeholder="Firstname"
               type="text"
               name="firstname"
-              value={state.firstname}
-              onChange={handleChange}
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
               required
             />
             <input
@@ -106,8 +98,8 @@ const Signup = ({
               placeholder="Lastname"
               type="text"
               name="lastname"
-              value={state.lastname}
-              onChange={handleChange}
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
               required
             />
             <input
@@ -115,8 +107,8 @@ const Signup = ({
               placeholder="Email"
               type="text"
               name="email"
-              value={state.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
             <input
@@ -124,8 +116,8 @@ const Signup = ({
               placeholder="Password"
               type="password"
               name="password"
-              value={state.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
             <input
@@ -133,14 +125,14 @@ const Signup = ({
               placeholder="Confirm password"
               type="password"
               name="password_confirmation"
-              value={state.password_confirmation}
-              onChange={handleChange}
+              value={passwordconfirmation}
+              onChange={(e) => setPasswordconfirmation(e.target.value)}
               required
             />
           </div>
           <div className="signup-dropdown">
             <p className="user-type-text">Signup As:</p>
-            <select className="user-type-dropdown" name="user_type" onChange={handleChange}>
+            <select className="user-type-dropdown" name="user_type" onChange={(e) => setUsertype(e.target.value)}>
               {
               userTypes.map((ut) => <option className="user-type-option" key={ut} value={ut}>{ut}</option>)
             }
@@ -178,7 +170,7 @@ Signup.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  isLoading: state.auth.isLoading,
+  isLoading: state.isLoading,
   errors: state.auth.errors.signupErrors,
 });
 

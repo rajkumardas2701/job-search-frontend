@@ -14,21 +14,11 @@ const Signin = ({
   signinInit, signinSuccess, signinFailure, isLoading, errors,
 }) => {
   const history = useHistory();
-  const [state, setState] = useState({
-    email: '',
-    password: '',
-  });
-
-  const { email, password } = state;
-
-  const handleChange = ({ target: { name, value } }) => {
-    setState({ ...state, [name]: value });
-  };
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const resetState = () => {
-    setState({
-      email: '',
-      password: '',
-    });
+    setEmail('');
+    setPassword('');
     history.push('/');
   };
   const handleErrors = (errors) => (
@@ -57,7 +47,7 @@ const Signin = ({
         }
       }, 5000);
     };
-    if (!validator.validate(state.email)) {
+    if (!validator.validate(email)) {
       shwError.innerHTML = 'Invalid email format';
       addValidChild();
     } else {
@@ -83,7 +73,7 @@ const Signin = ({
               type="text"
               name="email"
               value={email}
-              onChange={handleChange}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
             <input
@@ -92,7 +82,7 @@ const Signin = ({
               type="password"
               name="password"
               value={password}
-              onChange={handleChange}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
             <p className="form-head" id="form-signup-text">

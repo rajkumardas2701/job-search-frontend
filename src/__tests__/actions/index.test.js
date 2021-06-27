@@ -12,7 +12,7 @@ import {
 describe('actions', () => {
   describe('authInit', () => {
     it('returns an object with type property', () => {
-      expect(authInit()).toEqual({ type: 'AUTH_INIT' });
+      expect(authInit()).toEqual({ type: 'INIT' });
     });
   });
   describe('authSuccess', () => {

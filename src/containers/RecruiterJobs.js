@@ -68,7 +68,8 @@ const RecruiterJobs = ({
       {showForm && (
       <AddJob
         handleForm={(showForm) => setShowForm(showForm)}
-        postInit={(isLoading) => postInit(isLoading)}
+        // postInit={(isLoading) => postInit(isLoading)}
+        postInit={postInit}
         postSuccess={(job) => postSuccess(job)}
         postFailure={(errors) => postFailure(errors)}
         jobsCall={jobsCall}
@@ -111,12 +112,14 @@ RecruiterJobs.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  isLoading: state.postJobData.isLoading,
+  // isLoading: state.postJobData.isLoading,
+  isLoading: state.isLoading,
   errors: state.postJobData.errors,
   job: state.postJobData.job,
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  // postInit: (isLoading) => dispatch(postJobInit(isLoading)),
   postInit: (isLoading) => dispatch(postJobInit(isLoading)),
   postSuccess: (job) => dispatch(postJobSuccess(job)),
   postFailure: (errors) => dispatch(postJobfailure(errors)),

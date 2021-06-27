@@ -9,29 +9,17 @@ const AddJob = ({
   fetchSuccess,
   fetchFail,
 }) => {
-  const [state, setState] = useState({
-    role: '',
-    location: '',
-    salary: '',
-    skills: '',
-  });
+  const [role, setRole] = useState('');
+  const [location, setLocation] = useState('');
+  const [salary, setSalary] = useState('');
+  const [skills, setSkills] = useState('');
   const [showForm, setShowForm] = useState(false);
   useEffect(() => { setShowForm(showForm); }, [showForm]);
-  const {
-    role, location, salary, skills,
-  } = state;
-
-  const handleChange = ({ target: { name, value } }) => {
-    setState({ ...state, [name]: value });
-  };
-
   const resetState = () => {
-    setState({
-      role: '',
-      location: '',
-      salary: '',
-      skills: '',
-    });
+    setRole('');
+    setLocation('');
+    setSalary('');
+    setSkills('');
     handleForm(!!showForm);
   };
 
@@ -58,7 +46,7 @@ const AddJob = ({
               type="text"
               name="role"
               value={role}
-              onChange={handleChange}
+              onChange={(e) => setRole(e.target.value)}
               required
             />
             <input
@@ -67,7 +55,7 @@ const AddJob = ({
               type="text"
               name="location"
               value={location}
-              onChange={handleChange}
+              onChange={(e) => setLocation(e.target.value)}
               required
             />
             <input
@@ -76,7 +64,7 @@ const AddJob = ({
               type="number"
               name="salary"
               value={salary}
-              onChange={handleChange}
+              onChange={(e) => setSalary(e.target.value)}
               required
             />
             <input
@@ -85,7 +73,7 @@ const AddJob = ({
               type="text"
               name="skills"
               value={skills}
-              onChange={handleChange}
+              onChange={(e) => setSkills(e.target.value)}
               required
             />
           </div>

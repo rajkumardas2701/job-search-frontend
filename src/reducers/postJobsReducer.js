@@ -5,7 +5,7 @@ import {
 const postJobsReducer = (state = {}, action) => {
   switch (action.type) {
     case POST_JOBS_INIT:
-      return { ...state, isLoading: action.payload };
+      return { ...state, isLoading: true };
     case POST_JOBS_SUCCESS:
       return {
         ...state,
