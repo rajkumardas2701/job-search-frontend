@@ -97,7 +97,7 @@ const postJob = (postInit, postSuccess, postFailure, jobsCall,
   fetchInit,
   fetchSuccess,
   fetchFail, job) => {
-  postInit(true);
+  postInit();
   axios
     .post('http://localhost:3001/api/v1/jobs', { job }, { withCredentials: true })
     .then((response) => {

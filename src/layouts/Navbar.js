@@ -16,7 +16,7 @@ const NavBar = ({ isLoggedIn, user, handleSignOut }) => {
   const handlelogout = (event) => {
     event.preventDefault();
     logoutCall(userState, loginState, handleSignOut);
-    history.push('/signin');
+    history.push('/');
   };
 
   const handlelogin = (event) => {

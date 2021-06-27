@@ -71,7 +71,7 @@ const Signup = ({
         password_confirmation: passwordconfirmation,
         user_type: usertype,
       };
-      if (user.usertype === '') { user.usertype = 'Candidate'; }
+      if (user.user_type === '') { user.user_type = 'Candidate'; }
       authCall('signup', user, signupinit, signupsuccess, signupfailure, history);
     }
     event.preventDefault();
@@ -170,7 +170,7 @@ Signup.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  isLoading: state.auth.isLoading,
+  isLoading: state.isLoading,
   errors: state.auth.errors.signupErrors,
 });
 

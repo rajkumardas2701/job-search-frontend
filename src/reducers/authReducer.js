@@ -1,10 +1,10 @@
 import {
-  AUTH_INIT, AUTH_SUCCESS, AUTH_SIGNUP_FAIL, AUTH_SIGNIN_FAIL,
+  INIT, AUTH_SUCCESS, AUTH_SIGNUP_FAIL, AUTH_SIGNIN_FAIL,
 } from '../actions/index';
 
 const authReducer = (state = {}, action) => {
   switch (action.type) {
-    case AUTH_INIT:
+    case INIT:
       return { ...state, isLoading: true };
     case AUTH_SUCCESS:
       return {
