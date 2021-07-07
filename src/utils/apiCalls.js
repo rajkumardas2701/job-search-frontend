@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import baseURL from '../constants/apis';
+import baseURL from '../constants/apis';
 
 const authCall = (authType, user, initialize, success, failure, history) => {
   let query;
@@ -9,7 +9,7 @@ const authCall = (authType, user, initialize, success, failure, history) => {
     query = 'sessions';
   }
   initialize();
-  axios.post(`http://127.0.0.1:3001/api/v1/${query}`, { user }, { withCredentials: true })
+  axios.post(`${baseURL}${query}`, { user }, { withCredentials: true })
     .then((response) => {
       if ((response.data.status === 'created') || (response.data.logged_in)) {
         success();
@@ -41,7 +41,7 @@ const authCall = (authType, user, initialize, success, failure, history) => {
 const jobsCall = async (initialize, success, failure, history) => {
   initialize();
   try {
-    const result = await axios.get('http://127.0.0.1:3001/api/v1/jobs', {
+    const result = await axios.get(`${baseURL}jobs`, {
       headers:
     { Authorization: `${JSON.parse(localStorage.getItem('loggedInState')).token}` },
     },
@@ -67,7 +67,7 @@ const jobsCall = async (initialize, success, failure, history) => {
 const applyJob = async (initialize, success, failure, app, history) => {
   initialize();
   try {
-    const result = await axios.post('http://127.0.0.1:3001/api/v1/apps', { app },
+    const result = await axios.post(`${baseURL}apps`, { app },
       {
         headers:
     { Authorization: `${JSON.parse(localStorage.getItem('loggedInState')).token}` },
@@ -95,7 +95,7 @@ const fetchAppsCall = async (initialize, success, failure, id, history) => {
   initialize();
   try {
     const result = await axios
-      .get(`http://127.0.0.1:3001/api/v1/apps/${id}`,
+      .get(`${baseURL}apps/${id}`,
         {
           headers:
     { Authorization: `${JSON.parse(localStorage.getItem('loggedInState')).token}` },
@@ -121,7 +121,7 @@ const deleteAppsCall = async (initialize, failure, id, history) => {
   initialize();
   try {
     const result = await axios
-      .delete(`http://127.0.0.1:3001/api/v1/jobs/${id}`,
+      .delete(`${baseURL}jobs/${id}`,
         {
           headers:
     { Authorization: `${JSON.parse(localStorage.getItem('loggedInState')).token}` },
@@ -149,7 +149,7 @@ const postJob = (postInit, postSuccess, postFailure, jobsCall,
   fetchFail, job, history) => {
   postInit();
   axios
-    .post('http://127.0.0.1:3001/api/v1/jobs', { job },
+    .post(`${baseURL}jobs`, { job },
       {
         headers:
   { Authorization: `${JSON.parse(localStorage.getItem('loggedInState')).token}` },
