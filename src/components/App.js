@@ -8,13 +8,16 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState({
     logged_in: false,
     user: {},
+    token: '',
   });
   useEffect(() => {
     const loggedIn = JSON.parse(localStorage.getItem('loggedInState'));
+    // console.log('loggedInState in App', loggedIn);
     if (loggedIn === null) {
       const temp = {
         logged_in: false,
         user: {},
+        token: '',
       };
       setLoggedIn(temp);
     } else {

@@ -9,6 +9,7 @@ import { authCall } from '../utils/apiCalls';
 import { authInit, authSuccess, authSigninFailure } from '../actions/index';
 import NavBar from '../layouts/Navbar';
 import Footer from '../layouts/Footer';
+import Error from './Error';
 
 const Signin = ({
   signinInit, signinSuccess, signinFailure, isLoading, errors,
@@ -21,35 +22,10 @@ const Signin = ({
     setPassword('');
     history.push('/');
   };
-  const handleErrors = (errors) => (
-    <div>
-      {
-      errors.length > 0 && errors.map((error, idx) => <div key={`${error}-${idx + 1}`} className="signin-error">{error}</div>)
-      }
-    </div>
-  );
   const handleSubmit = (event) => {
-    const fValid = document.getElementById('form-validation');
-    const shwError = document.createElement('div');
-    const errorEle = document.getElementById('server-error-section-signin');
-    setTimeout(() => {
-      if (errorEle.hasChildNodes()) {
-        errorEle.removeChild(errorEle.childNodes[0]);
-        errors.splice(0, errors.length);
-      }
-    }, 5000);
-    const addValidChild = () => {
-      shwError.classList.add('validationError');
-      fValid.appendChild(shwError);
-      setTimeout(() => {
-        if (fValid.hasChildNodes()) {
-          fValid.removeChild(fValid.childNodes[0]);
-        }
-      }, 5000);
-    };
     if (!validator.validate(email)) {
-      shwError.innerHTML = 'Invalid email format';
-      addValidChild();
+      const err = 'Invalid email format';
+      signinFailure(err);
     } else {
       const user = {
         email,
@@ -105,8 +81,9 @@ const Signin = ({
           </div>
         </form>
         {isLoading && <div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>}
-        <div className="form-validation" id="form-validation" />
-        <div className="server-error-section-signin" id="server-error-section-signin">{errors.length ? handleErrors(errors) : null}</div>
+        {
+          errors.length > 0 && <Error errors={errors} failure={signinFailure} />
+        }
       </div>
       <Footer />
     </div>

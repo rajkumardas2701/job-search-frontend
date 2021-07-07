@@ -22,7 +22,7 @@ const JobApplicants = ({
   }
   const { user, loginState, job } = location.state;
   const handleClick = () => {
-    fetchAppsCall(appsInit, appsSuccess, appsFail, job.id);
+    fetchAppsCall(appsInit, appsSuccess, appsFail, job.id, history);
   };
   const handleDelete = () => {
     // eslint-disable-next-line
@@ -35,7 +35,7 @@ const JobApplicants = ({
     history.push('/');
   };
   useEffect(() => {
-    fetchAppsCall(appsInit, appsSuccess, appsFail, job.id);
+    fetchAppsCall(appsInit, appsSuccess, appsFail, job.id, history);
   }, []);
 
   return (

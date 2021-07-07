@@ -10,6 +10,7 @@ import { authCall } from '../utils/apiCalls';
 import { userTypes } from '../constants/initialState';
 import NavBar from '../layouts/Navbar';
 import Footer from '../layouts/Footer';
+import Error from './Error';
 
 const Signup = ({
   signupinit, signupsuccess, signupfailure, isLoading, errors,
@@ -31,37 +32,13 @@ const Signup = ({
     setUsertype('');
     history.push('/');
   };
-  const handleErrors = (errors) => (
-    <div>
-      {errors.map((error, idx) => <div key={`${error}-${idx + 1}`} className="signin-error">{error}</div>)}
-    </div>
-  );
-
   const handleSubmit = (event) => {
-    const fValid = document.getElementById('form-validation');
-    const shwError = document.createElement('div');
-    const errorEle = document.getElementById('server-error-section-signup');
-    setTimeout(() => {
-      if (errorEle.hasChildNodes()) {
-        errorEle.removeChild(errorEle.childNodes[0]);
-        errors.splice(0, errors.length);
-      }
-    }, 5000);
-    const addValidChild = () => {
-      shwError.classList.add('validationError');
-      fValid.appendChild(shwError);
-      setTimeout(() => {
-        if (fValid.hasChildNodes()) {
-          fValid.removeChild(fValid.childNodes[0]);
-        }
-      }, 5000);
-    };
     if (!validator.validate(email)) {
-      shwError.innerHTML = 'Invalid email format';
-      addValidChild();
+      const err = 'Invalid email format';
+      signupfailure(err);
     } else if (password !== passwordconfirmation) {
-      shwError.innerHTML = 'Passwords don\'t match!!';
-      addValidChild();
+      const err = 'Passwords don\'t match!!';
+      signupfailure(err);
     } else {
       const user = {
         firstname,
@@ -148,8 +125,9 @@ const Signup = ({
           </div>
         </form>
         {isLoading && <div><CircleToBlockLoading size="small" color="rgb(92, 92, 241)" /></div>}
-        <div className="form-validation" id="form-validation" />
-        <div className="server-error-section-signup" id="server-error-section-signup">{errors.length ? handleErrors(errors) : null}</div>
+        {
+          errors.length > 0 && <Error errors={errors} failure={signupfailure} />
+        }
       </div>
       <Footer />
     </div>

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../styles/NavBar.css';
-import { logoutCall } from '../utils/apiCalls';
 
 const NavBar = ({ isLoggedIn, user, handleSignOut }) => {
   const history = useHistory();
@@ -15,7 +14,16 @@ const NavBar = ({ isLoggedIn, user, handleSignOut }) => {
 
   const handlelogout = (event) => {
     event.preventDefault();
-    logoutCall(userState, loginState, handleSignOut);
+    handleSignOut({
+      logged_in: false,
+      user: {},
+      token: '',
+    });
+    localStorage.setItem('loggedInState', JSON.stringify({
+      logged_in: false,
+      user: {},
+      token: '',
+    }));
     history.push('/');
   };
 

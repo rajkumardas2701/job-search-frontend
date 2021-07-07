@@ -1,5 +1,6 @@
 import '../styles/AddJob.css';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import PropTypes from 'prop-types';
 import { postJob } from '../utils/apiCalls';
 
@@ -9,6 +10,7 @@ const AddJob = ({
   fetchSuccess,
   fetchFail,
 }) => {
+  const history = useHistory();
   const [role, setRole] = useState('');
   const [location, setLocation] = useState('');
   const [salary, setSalary] = useState('');
@@ -30,7 +32,7 @@ const AddJob = ({
     postJob(postInit, postSuccess, postFailure, jobsCall,
       fetchInit,
       fetchSuccess,
-      fetchFail, job);
+      fetchFail, job, history);
     handleForm(!!showForm);
   };
 

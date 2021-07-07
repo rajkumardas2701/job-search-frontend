@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { CircleToBlockLoading } from 'react-loadingg';
 import { fetchJobsInit, fetchJobsSuccess, fetchJobsFailure }
   from '../actions/index';
@@ -11,11 +12,12 @@ import RecruiterJobs from './RecruiterJobs';
 const Jobs = ({
   fetchInit, fetchSuccess, fetchFail, isLoading, isError, user, jobs, isLoggedIn,
 }) => {
+  const history = useHistory();
   const [currentUser, setCurrentUser] = useState({ user });
   const [loginState, setLoginState] = useState(isLoggedIn);
   useEffect(() => {
     setCurrentUser(currentUser);
-    jobsCall(fetchInit, fetchSuccess, fetchFail);
+    jobsCall(fetchInit, fetchSuccess, fetchFail, history);
   }, [currentUser]);
 
   useEffect(() => { setLoginState(isLoggedIn); }, [isLoggedIn]);
@@ -23,7 +25,7 @@ const Jobs = ({
   return (
     <div>
       {isError
-        ? (<div>Couldn&apos;t fetch the data now, please try again later</div>)
+        ? (<div className="no-jobs-msg-candidate">Couldn&apos;t fetch the data now, please refresh the page</div>)
         : (
           <div>
             { isLoading
