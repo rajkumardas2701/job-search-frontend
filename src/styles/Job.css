@@ -1,0 +1,47 @@
+.job-section {
+  width: 75%;
+  margin: 60px auto;
+  padding: 15px;
+  border: 2px solid white;
+  border-radius: 10px;
+  height: 250px;
+  background: white;
+}
+
+.job-section > .job-details > p {
+  margin-top: 0;
+}
+
+.job-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.job-label {
+  font-size: large;
+  font-weight: 700;
+}
+
+.job-value {
+  color: blue;
+  font-weight: 500;
+}
+
+.job-btn {
+  margin-top: 5px;
+}
+
+.text-link {
+  border: 1px solid black;
+  height: 30px;
+  background: rgb(9, 219, 9);
+  border-radius: 5px;
+  padding: 7px 20%;
+  color: blue;
+  font-weight: 400;
+}
+
+.job-btn > a {
+  text-decoration: none;
+}

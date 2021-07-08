@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders item component correctlly 1`] = `
+<div
+  className="job-section"
+>
+  <div
+    className="job-details"
+  >
+    <p
+      className="job-label"
+    >
+      Role:
+    </p>
+    <p
+      className="job-value"
+    >
+      tester
+    </p>
+  </div>
+  <div
+    className="job-details"
+  >
+    <p
+      className="job-label"
+    >
+      Location:
+    </p>
+    <p
+      className="job-value"
+    >
+      delhi
+    </p>
+  </div>
+  <div
+    className="job-details"
+  >
+    <p
+      className="job-label"
+    >
+      Max. salary:
+    </p>
+    <p
+      className="job-value"
+    >
+      ₹
+       
+      12
+       
+      Lacs/A
+    </p>
+  </div>
+  <div
+    className="job-details"
+  >
+    <p
+      className="job-label"
+    >
+      Skills:
+    </p>
+    <p
+      className="job-value"
+    >
+      React
+    </p>
+  </div>
+  <div
+    className="job-btn"
+    data-testid="text-link-test"
+  >
+    <a
+      className="text-link"
+      data-testid="text-link-test"
+      href="/job_apps/1"
+      onClick={[Function]}
+    >
+      Check Applicants
+    </a>
+  </div>
+</div>
+`;

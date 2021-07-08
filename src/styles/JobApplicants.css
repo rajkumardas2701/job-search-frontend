@@ -1,0 +1,95 @@
+.no-jobs-msg-applicant-list {
+  border: 1px solid black;
+  width: 70%;
+  margin: 40px auto 40px auto;
+  text-align: center;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.job-section-2 {
+  width: 70%;
+  margin: 90px auto 10px auto;
+  padding: 20px;
+  border: 2px solid white;
+  border-radius: 10px;
+  height: 150px;
+  background: white;
+}
+
+.applicants-list {
+  height: 240px;
+  margin-top: 20px;
+}
+
+.carousel-container-applicant > div > p {
+  font-size: medium !important;
+}
+
+.job-section-2 > .job-details > p {
+  margin: 0;
+}
+
+.job-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.job-label {
+  font-size: large;
+  font-weight: 700;
+}
+
+.job-value {
+  color: blue;
+  font-weight: 500;
+}
+
+.job-refresh-btn {
+  width: 30%;
+  height: 40px;
+  margin-top: 10px;
+  color: blue;
+  background: rgb(9, 219, 9);
+  font-weight: 400;
+  font-size: large;
+  border-radius: 7px;
+}
+
+.job-delete-btn {
+  width: 30%;
+  height: 40px;
+  font-weight: 400;
+  font-size: large;
+  color: white;
+  background-color: red;
+  border-radius: 7px;
+  margin-top: 10px;
+}
+
+.job-apply-btn:hover,
+.job-delete-btn:hover {
+  cursor: pointer;
+}
+
+.job-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.carousel-container-applicant {
+  height: 220px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding-top: -50px;
+}
+
+button {
+  cursor: pointer;
+}

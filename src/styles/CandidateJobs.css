@@ -1,0 +1,53 @@
+.view {
+  margin: 20px auto;
+  text-align: center;
+  color: azure;
+  width: 80%;
+}
+
+.carousel-container {
+  height: 60vh;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.candidate-jobs-container {
+  height: 50vh;
+  margin-top: 100px;
+}
+
+.carousel-container > div > ul {
+  display: flex;
+  flex-direction: row;
+  height: -90px;
+  justify-content: center;
+}
+
+.carousel-container > div {
+  height: 60vh;
+}
+
+.carousel-container > div > p {
+  font-size: medium !important;
+}
+
+.no-jobs-msg-candidate {
+  border: 1px solid black;
+  width: 70%;
+  margin: 250px auto 150px auto;
+  text-align: center;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.carousel-slider {
+  height: 250px;
+}
+
+.carousel-container > div > .control-dots {
+  bottom: -10px !important;
+}

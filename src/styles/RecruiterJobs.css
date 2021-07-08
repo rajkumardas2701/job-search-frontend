@@ -1,0 +1,42 @@
+.add-job-btn {
+  width: 80%;
+  background-color: rgb(1, 86, 243);
+  color: white;
+  font-weight: 800;
+  position: fixed;
+  bottom: 50px;
+  left: 10%;
+  height: 40px;
+  font-size: 20px;
+}
+
+.add-job-btn:hover {
+  cursor: pointer;
+}
+
+.carousel-container-recruiter {
+  height: 60vh;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.carousel-container-recruiter > div > p {
+  font-size: medium !important;
+}
+
+.no-jobs-msg-recruiter {
+  border: 1px solid black;
+  width: 70%;
+  margin: 250px auto 150px auto;
+  text-align: center;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.carousel-container-recruiter > div {
+  height: 60vh;
+}
