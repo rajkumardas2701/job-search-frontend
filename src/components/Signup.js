@@ -148,7 +148,7 @@ Signup.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  isLoading: state.isLoading,
+  isLoading: state.auth.isLoading,
   errors: state.auth.errors.signupErrors,
 });
 
